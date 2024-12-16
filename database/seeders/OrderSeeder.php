@@ -13,177 +13,570 @@ class OrderSeeder extends Seeder
     public function run(): void
     {
         DB::table('order')->insert([
+            // User 1: 2 orders
             [
                 'user_id' => 1,
-                'nama_pesanan' => 'Grilled Chicken', // Alice Johnson is allergic to seafood
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 1,
+                'nama_pesanan' => 'Iced Tea',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // User 2: 3 orders
+            [
+                'user_id' => 2,
+                'nama_pesanan' => 'Tofu Salad',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 2,
-                'nama_pesanan' => 'Tofu Salad', // Bob Smith is vegan and allergic to peanut
-                'status_pesanan' => false,
+                'nama_pesanan' => 'Green Detox Juice',
+                'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'user_id' => 2,
+                'nama_pesanan' => 'Fried Rice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // User 3: 1 order
+            [
                 'user_id' => 3,
-                'nama_pesanan' => 'Beef Steak', // Charlie Brown is allergic to shrimp
+                'nama_pesanan' => 'Beef Steak',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // User 4: 4 orders
+            [
+                'user_id' => 4,
+                'nama_pesanan' => 'Spaghetti Bolognese',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 4,
-                'nama_pesanan' => 'Spaghetti Bolognese', // David Clark has no allergies or preferences
-                'status_pesanan' => false,
+                'nama_pesanan' => 'Hazelnut Coffee',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 4,
+                'nama_pesanan' => 'Fried Rice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 4,
+                'nama_pesanan' => 'Coconut Water',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // User 5: 5 orders
+            [
+                'user_id' => 5,
+                'nama_pesanan' => 'Vegan Burger',
+                'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 5,
-                'nama_pesanan' => 'Vegan Burger', // Eva White is vegan and has no allergies
+                'nama_pesanan' => 'Green Detox Juice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 5,
+                'nama_pesanan' => 'Tofu Salad',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 5,
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 5,
+                'nama_pesanan' => 'Vegetable Stir Fry',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // User 6: 3 orders
+            [
+                'user_id' => 6,
+                'nama_pesanan' => 'Grilled Chicken',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 6,
-                'nama_pesanan' => 'Grilled Chicken', // Frank Harris is allergic to peanut
+                'nama_pesanan' => 'Fried Rice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 6,
+                'nama_pesanan' => 'Vegan Burger',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 7: 2 orders
+            [
+                'user_id' => 7,
+                'nama_pesanan' => 'Tofu Salad',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 7,
-                'nama_pesanan' => 'Vegan Burger', // Grace Lee is vegan and allergic to tofu
+                'nama_pesanan' => 'Hazelnut Coffee',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 8: 4 orders
+            [
+                'user_id' => 8,
+                'nama_pesanan' => 'Vegetable Stir Fry',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 8,
-                'nama_pesanan' => 'Hazelnut Coffee', // Henry Scott is allergic to milk
+                'nama_pesanan' => 'Green Detox Juice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 8,
+                'nama_pesanan' => 'Beef Steak',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 8,
+                'nama_pesanan' => 'Tofu Salad',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 9: 5 orders
+            [
+                'user_id' => 9,
+                'nama_pesanan' => 'Vegan Burger',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 9,
-                'nama_pesanan' => 'Vegan Burger', // Isabella Moore is vegan and has no allergies
+                'nama_pesanan' => 'Grilled Chicken',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
+                'user_id' => 9,
+                'nama_pesanan' => 'Fried Rice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 9,
+                'nama_pesanan' => 'Beef Steak',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 9,
+                'nama_pesanan' => 'Green Detox Juice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 10: 1 order
+            [
                 'user_id' => 10,
-                'nama_pesanan' => 'Grilled Chicken', // Jack Taylor is allergic to hazelnut
+                'nama_pesanan' => 'Spaghetti Bolognese',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 11: 3 orders
+            [
+                'user_id' => 11,
+                'nama_pesanan' => 'Milkshake',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 11,
-                'nama_pesanan' => 'Peanut Butter Smoothie', // Kathy Wilson is vegan and has no allergies
-                'status_pesanan' => false,
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 11,
+                'nama_pesanan' => 'Vegan Burger',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            // User 12: 4 orders
+            [
+                'user_id' => 12,
+                'nama_pesanan' => 'Tofu Salad',
+                'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 12,
-                'nama_pesanan' => 'Vegan Burger', // Liam Moore is vegan and has no allergies
+                'nama_pesanan' => 'Green Detox Juice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 12,
+                'nama_pesanan' => 'Vegan Burger',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 12,
+                'nama_pesanan' => 'Spaghetti Bolognese',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 13: 2 orders
+            [
+                'user_id' => 13,
+                'nama_pesanan' => 'Vegetable Stir Fry',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 13,
-                'nama_pesanan' => 'Tofu Salad', // Megan Martinez is vegan and allergic to peanut
-                'status_pesanan' => false,
+                'nama_pesanan' => 'Hazelnut Coffee',
+                'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+
+            // User 14: 1 order
             [
                 'user_id' => 14,
-                'nama_pesanan' => 'Grilled Chicken', // Nina Davis is allergic to shrimp
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 15: 3 orders
+            [
+                'user_id' => 15,
+                'nama_pesanan' => 'Fried Rice',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 15,
-                'nama_pesanan' => 'Fried Rice', // Oliver King is allergic to seafood
+                'nama_pesanan' => 'Vegan Burger',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 15,
+                'nama_pesanan' => 'Green Detox Juice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 16: 4 orders
+            [
+                'user_id' => 16,
+                'nama_pesanan' => 'Beef Steak',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 16,
-                'nama_pesanan' => 'Vegetable Stir Fry', // Penny Adams is vegan and has no allergies
+                'nama_pesanan' => 'Spaghetti Bolognese',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 16,
+                'nama_pesanan' => 'Vegetable Stir Fry',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 16,
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 17: 2 orders
+            [
+                'user_id' => 17,
+                'nama_pesanan' => 'Fried Rice',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 17,
-                'nama_pesanan' => 'Green Detox Juice', // Quincy Taylor is allergic to milk
+                'nama_pesanan' => 'Green Detox Juice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 18: 3 orders
+            [
+                'user_id' => 18,
+                'nama_pesanan' => 'Almond Milk Latte',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 18,
-                'nama_pesanan' => 'Vegan Burger', // Rachel Brown is vegan and has no allergies
-                'status_pesanan' => false,
+                'nama_pesanan' => 'Vegetable Stir Fry',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 18,
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 19: 5 orders
+            [
+                'user_id' => 19,
+                'nama_pesanan' => 'Vegan Burger',
+                'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 19,
-                'nama_pesanan' => 'Fried Rice', // Sam Green is allergic to hazelnut
+                'nama_pesanan' => 'Tofu Salad',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 19,
+                'nama_pesanan' => 'Spaghetti Bolognese',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 19,
+                'nama_pesanan' => 'Fried Rice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 19,
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 20: 4 orders
+            [
+                'user_id' => 20,
+                'nama_pesanan' => 'Vegan Burger',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 20,
-                'nama_pesanan' => 'Tofu Salad', // Tina Foster is vegan and allergic to tofu
+                'nama_pesanan' => 'Vegetable Stir Fry',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 20,
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 20,
+                'nama_pesanan' => 'Tofu Salad',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 21: 3 orders
+            [
+                'user_id' => 21,
+                'nama_pesanan' => 'Grilled Chicken',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 21,
-                'nama_pesanan' => 'Grilled Chicken', // Ursula Grant has no allergies or preferences
+                'nama_pesanan' => 'Fried Rice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 21,
+                'nama_pesanan' => 'Vegetable Stir Fry',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 22: 2 orders
+            [
+                'user_id' => 22,
+                'nama_pesanan' => 'Almond Milk Latte',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 22,
-                'nama_pesanan' => 'Milkshake Kacang', // Victor Lee is allergic to peanut
+                'nama_pesanan' => 'Hazelnut Coffee',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 23: 3 orders
+            [
+                'user_id' => 23,
+                'nama_pesanan' => 'Vegan Burger',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 23,
-                'nama_pesanan' => 'Vegan Burger', // Wendy Harris is vegan and has no allergies
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 23,
+                'nama_pesanan' => 'Fried Rice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 24: 4 orders
+            [
+                'user_id' => 24,
+                'nama_pesanan' => 'Vegetable Stir Fry',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 24,
-                'nama_pesanan' => 'Hazelnut Coffee', // Xander Clark is allergic to milk
-                'status_pesanan' => false,
+                'nama_pesanan' => 'Beef Steak',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 24,
+                'nama_pesanan' => 'Spaghetti Bolognese',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'user_id' => 24,
+                'nama_pesanan' => 'Green Detox Juice',
+                'status_pesanan' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+
+            // User 25: 2 orders
+            [
+                'user_id' => 25,
+                'nama_pesanan' => 'Grilled Chicken',
+                'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'user_id' => 25,
-                'nama_pesanan' => 'Vegetable Stir Fry', // Yara Scott is vegan and has no allergies
+                'nama_pesanan' => 'Fried Rice',
                 'status_pesanan' => true,
                 'created_at' => now(),
                 'updated_at' => now(),

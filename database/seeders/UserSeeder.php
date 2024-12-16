@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
         DB::table('user')->insert([
             ['nama' => 'Alice Johnson', 'email' => 'alicejohnson@user', 'password' => bcrypt('alice'), 'preferensi' => 'normal', 'alergi' => 'seafood', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Bob Smith', 'email' => 'bobsmith@user', 'password' => bcrypt('bob'), 'preferensi' => 'vegan', 'alergi' => 'peanut', 'created_at' => now(), 'updated_at' => now()],
-            ['nama' => 'Charlie Brown', 'email' => 'charliebrown@user', 'password' => bcrypt('charlie'), 'preferensi' => 'normal', 'alergi' => 'shrimp', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Charlie Brown', 'email' => 'charliebrown@user', 'password' => bcrypt('charlie'), 'preferensi' => 'normal', 'alergi' => 'seafood', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'David Clark', 'email' => 'davidclark@user', 'password' => bcrypt('david'), 'preferensi' => 'normal', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Eva White', 'email' => 'evawhite@user', 'password' => bcrypt('eva'), 'preferensi' => 'vegan', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Frank Harris', 'email' => 'frankharris@user', 'password' => bcrypt('frank'), 'preferensi' => 'normal', 'alergi' => 'peanut', 'created_at' => now(), 'updated_at' => now()],
@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             ['nama' => 'Kathy Wilson', 'email' => 'kathywilson@user', 'password' => bcrypt('kathy'), 'preferensi' => 'vegan', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Liam Moore', 'email' => 'liammoore@user', 'password' => bcrypt('liam'), 'preferensi' => 'normal', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Megan Martinez', 'email' => 'meganmartinez@user', 'password' => bcrypt('megan'), 'preferensi' => 'vegan', 'alergi' => 'peanut', 'created_at' => now(), 'updated_at' => now()],
-            ['nama' => 'Nina Davis', 'email' => 'ninadavis@user', 'password' => bcrypt('nina'), 'preferensi' => 'normal', 'alergi' => 'shrimp', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Nina Davis', 'email' => 'ninadavis@user', 'password' => bcrypt('nina'), 'preferensi' => 'normal', 'alergi' => 'seafood', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Oliver King', 'email' => 'oliverking@user', 'password' => bcrypt('oliver'), 'preferensi' => 'normal', 'alergi' => 'seafood', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Penny Adams', 'email' => 'pennyadams@user', 'password' => bcrypt('penny'), 'preferensi' => 'vegan', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Quincy Taylor', 'email' => 'quincytaylor@user', 'password' => bcrypt('quincy'), 'preferensi' => 'normal', 'alergi' => 'milk', 'created_at' => now(), 'updated_at' => now()],
