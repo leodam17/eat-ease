@@ -1,0 +1,88 @@
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-10 transition-colors duration-300">
+    <div class="container mx-auto px-4 flex justify-between items-center h-20">
+        <!-- Title -->
+        <a id="navbar-title" href="{{ route('home') }}" class="text-3xl font-bold text-white transition-colors duration-300">EatEase</a>
+
+        <!-- Navigation Links -->
+        <div class="flex items-center space-x-6">
+            <a href="{{ route('home') }}" 
+               class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('home') ? 'underline' : '' }}">
+                Home
+            </a>
+            <a href="{{ route('about') }}" 
+               class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('about') ? 'underline' : '' }}">
+                About
+            </a>
+            <a href="{{ route('menu') }}" 
+               class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('menu') ? 'underline' : '' }}">
+                Menu
+            </a>
+
+            <!-- Theme Toggle -->
+            <button id="theme-toggle" class="text-white text-sm font-semibold leading-6 transition-colors duration-300">
+                <span id="theme-icon"></span>
+            </button>
+
+            <!-- Logout Button -->
+            @auth
+            <form action="{{ route('login') }}" method="POST" class="inline">
+                @csrf
+                <button 
+                    type="submit" 
+                    id="logout-button"
+                    class="text-sm font-semibold leading-6 text-white border border-white rounded px-3 py-1 
+                    hover:bg-[#d6c2ac] hover:text-[#4a3b2f] dark:hover:bg-[#5a4837] dark:hover:text-[#e7d7c4] transition duration-300">
+                    Logout
+                </button>
+            </form>
+            @endauth
+        </div>
+    </div>
+</nav>
+
+
+
+<script>
+    function applyNavbarTheme() {
+        const navbar = document.getElementById('navbar');
+        const navbarTitle = document.getElementById('navbar-title');
+        const navLinks = document.querySelectorAll('#navbar a'); // Semua tautan navigasi
+        const themeToggle = document.getElementById('theme-toggle');
+        const logoutButton = document.getElementById('logout-button');
+
+        // Hapus kelas tema sebelumnya
+        navbar.classList.remove('bg-[#4a3b2f]', 'bg-[#e7d7c4]');
+
+        // Periksa apakah mode dark aktif
+        if (document.documentElement.classList.contains('dark')) {
+            // Tema dark
+            navbar.classList.add('bg-[#4a3b2f]');
+            navbarTitle.style.color = '#e7d7c4';
+            navLinks.forEach(link => (link.style.color = '#e7d7c4')); // Sesuaikan warna tautan
+            themeToggle.style.color = '#e7d7c4';
+            logoutButton.style.color = '#e7d7c4';
+            logoutButton.style.borderColor = '#e7d7c4';
+        } else {
+            // Tema light
+            navbar.classList.add('bg-[#e7d7c4]');
+            navbarTitle.style.color = '#4a3b2f';
+            navLinks.forEach(link => (link.style.color = '#4a3b2f')); // Sesuaikan warna tautan
+            themeToggle.style.color = '#4a3b2f';
+            logoutButton.style.color = '#4a3b2f';
+            logoutButton.style.borderColor = '#4a3b2f';
+        }
+    }
+
+    function toggleTheme() {
+        // Toggle class pada elemen <html> untuk mode dark
+        document.documentElement.classList.toggle('dark');
+        // Terapkan tema setelah toggle
+        applyNavbarTheme();
+    }
+
+    // Pasang event listener untuk inisialisasi dan toggle
+    document.addEventListener('DOMContentLoaded', () => {
+        applyNavbarTheme();
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+    });
+</script>
