@@ -51,6 +51,10 @@
             <button type="submit" class="glow-button w-full">
                 Login
             </button>
+            <p class="text-black-600 mt-4">
+                Don't have an account?
+                <a href="{{ route('signup') }}" class="text-orange-500 hover:underline">Register here!</a>
+            </p>
         </form>
     </div>
 </div>
