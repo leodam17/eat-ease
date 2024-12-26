@@ -6,7 +6,7 @@
 <div class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('img/login.webp') }}');">
     <div class="absolute inset-0 bg-black opacity-30"></div>
 
-    <div class="relative p-10 w-full max-w-md text-center mt-[-6%]">
+    <div class="relative p-10 w-full max-w-md text-center mt-10">
         <h2 class="text-3xl font-bold mb-4 text-white">Welcome Back</h2>
 
         <!-- pesan error apabila email dan password salah -->
@@ -51,6 +51,10 @@
             <button type="submit" class="glow-button w-full">
                 Login
             </button>
+            <p class="text-black-600 mt-4">
+                Don't have an account?
+                <a href="{{ route('signup') }}" class="text-orange-500 hover:underline">Register here!</a>
+            </p>
         </form>
     </div>
 </div>

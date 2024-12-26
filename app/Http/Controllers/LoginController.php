@@ -23,7 +23,7 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
             
-            return redirect()->route('movies');
+            return redirect()->route('menu');
         }
 
         return back()->withErrors([
