@@ -3,10 +3,10 @@
 @section('title', 'Sign Up | EatEase')
 
 @section('content')
-<div class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('img/signup.webp') }}');">
+<div class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('img/signup_admin.jpg') }}');">
     <div class="absolute inset-0 bg-black opacity-30"></div>
 
-    <div class="relative p-10 w-full max-w-md text-center mt-[-6%]">
+    <div class="relative p-10 w-full max-w-md text-center mt-10">
         <h2 class="text-3xl font-bold mb-4 text-white">Create Your Account</h2>
 
         <!-- Confirmation Message -->
