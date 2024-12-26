@@ -115,7 +115,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nama' => 'Almond Milk Latte',
-                'gambar' => 'almond_milk_latte.jpg',
+                'gambar' => 'almond_milk.webp',
                 'waktu_pengerjaan' => 15,
                 'deskripsi' => 'Latte made with organic almond milk.',
                 'harga' => 45000,
@@ -145,7 +145,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nama' => 'Peanut Butter Banana Smoothie',
-                'gambar' => 'peanut_butter_banana.jpg',
+                'gambar' => 'banana_smoothie.jpg',
                 'waktu_pengerjaan' => 10,
                 'deskripsi' => 'A creamy smoothie with the perfect blend of peanut butter and banana.',
                 'harga' => 50000,
@@ -155,7 +155,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'nama' => 'Iced Tea',
-                'gambar' => 'iced_tea.jpg',
+                'gambar' => 'iced_tea.jpeg',
                 'waktu_pengerjaan' => 5,
                 'deskripsi' => 'Refreshing iced tea with a sweet taste.',
                 'harga' => 15000,
