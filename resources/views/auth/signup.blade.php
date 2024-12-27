@@ -6,7 +6,7 @@
 <div class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('img/signup_admin.jpg') }}');">
     <div class="absolute inset-0 bg-black opacity-30"></div>
 
-    <div class="relative p-10 w-full max-w-md text-center mt-10">
+    <div class="relative p-10 w-full max-w-md text-center mt-20">
         <h2 class="text-3xl font-bold mb-4 text-white">Create Your Account</h2>
 
         <!-- Confirmation Message -->
@@ -24,20 +24,21 @@
         <!-- Sign-Up Form -->
         <form action="{{ route('signup.store') }}" method="POST" class="space-y-6">
             @csrf
+            <!-- Nama -->
             <div class="relative">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
-                    <!-- Icon Name -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M12 12c2.485 0 4.5-2.015 4.5-4.5S14.485 3 12 3 7.5 5.015 7.5 7.5 9.515 12 12 12zM6.75 21h10.5c.746 0 1.38-.428 1.648-1.05-1.2-1.829-3.56-3.2-6.398-3.2s-5.198 1.371-6.398 3.2c.268.622.902 1.05 1.648 1.05z"/>
                     </svg>
                 </span>
-                <input type="text" name="name" id="name" placeholder="Name" 
+                <input type="text" name="nama" id="nama" placeholder="Nama" 
                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
                        style="font-size: 1.1rem;" required>
             </div>
+            
+            <!-- Email -->
             <div class="relative">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
-                    <!-- Icon Email -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
                     </svg>
@@ -46,10 +47,38 @@
                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
                        style="font-size: 1.1rem;" required>
             </div>
+            
+            <!-- Preferensi -->
+            <div class="relative">
+                <select name="preferensi" id="preferensi" 
+                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
+                        style="font-size: 1.1rem;">
+                    <option value="" disabled selected>Select Preference</option>
+                    <option value="normal" class="text-gray-600">Normal</option>
+                    <option value="vege/vegan" class="text-gray-600">Vege/Vegan</option>
+                </select>
+            </div>
+            
+            <!-- Alergi -->
+            <div class="relative">
+                <select name="alergi" id="alergi" 
+                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
+                        style="font-size: 1.1rem;">
+                    <option value="" disabled selected>Select Allergies</option>
+                    <option value="none" class="text-gray-600">None</option>
+                    <option value="seafood" class="text-gray-600">Seafood</option>
+                    <option value="peanut" class="text-gray-600">Peanut</option>
+                    <option value="tofu" class="text-gray-600">Tofu</option>
+                    <option value="milk" class="text-gray-600">Milk</option>
+                    <option value="hazelnut" class="text-gray-600">Hazelnut</option>
+                </select>
+            </div>
+            
+            <!-- Password -->
             <div class="relative">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
-                    <!-- Icon Password -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- icon password -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/>
                     </svg>
                 </span>
@@ -57,10 +86,12 @@
                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
                        style="font-size: 1.1rem;" required>
             </div>
+
+            <!-- Confirm Password -->
             <div class="relative">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
-                    <!-- Icon Confirm Password -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- icon password -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/>
                     </svg>
                 </span>
@@ -68,6 +99,8 @@
                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
                        style="font-size: 1.1rem;" required>
             </div>
+            
+            <!-- Submit Button -->
             <button type="submit" class="glow-button w-full">
                 Sign Up
             </button>

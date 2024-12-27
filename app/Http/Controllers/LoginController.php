@@ -15,37 +15,30 @@ class LoginController extends Controller
 
     public function login_auth(Request $request)
     {
-        $request->validate([
+        // Validasi input
+        $validated = $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
-            'role' => 'required|in:user,admin', // Validasi role
+            'password' => 'required|string|min:8',
+            'role' => 'required|in:admin,user', // Pastikan role yang dipilih valid
         ]);
 
-        $credentials = $request->only('email', 'password');
-        $role = $request->role;
+        // Cek apakah ada user dengan email yang diberikan dan apakah role sesuai
+        $user = User::where('email', $validated['email'])->first();
 
-        if ($role === 'user') {
-            // Autentikasi dari tabel `user`
-            $user = \DB::table('user')->where('email', $request->email)->first();
-
-            if ($user && \Hash::check($request->password, $user->password)) {
-                // Simpan sesi atau arahkan ke dashboard user
-                session(['user' => $user]);
-                return redirect()->route('user.dashboard');
-            }
-        } elseif ($role === 'admin') {
-            // Autentikasi dari tabel `admin`
-            $admin = \DB::table('admin')->where('email', $request->email)->first();
-
-            if ($admin && \Hash::check($request->password, $admin->password)) {
-                // Simpan sesi atau arahkan ke dashboard admin
-                session(['admin' => $admin]);
-                return redirect()->route('admin.dashboard');
+        if ($user && Auth::attempt(['email' => $validated['email'], 'password' => $validated['password']])) {
+            // Cek role pengguna
+            if ($user->role === $validated['role']) {
+                // Login berhasil, arahkan ke halaman yang sesuai
+                return redirect()->route($user->role . '.home'); // Sesuaikan rute dengan role
+            } else {
+                // Jika role tidak cocok, logout dan beri pesan kesalahan
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Role tidak sesuai!');
             }
         }
 
-        // Jika autentikasi gagal
-        return back()->withErrors(['error' => 'Invalid credentials or role.']);
+        // Jika login gagal
+        return redirect()->route('login')->with('error', 'Email atau password salah!');
     }
 
 

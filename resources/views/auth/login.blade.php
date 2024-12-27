@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <form action="{{ route('login_post') }}" method="POST" class="space-y-6">
+        <form id="login-form" action="{{ route('user.login_post') }}" method="POST" class="space-y-6">
             @csrf
             <div class="relative">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
@@ -73,12 +73,22 @@
                 Login
             </button>
             <p class="text-black-600 mt-4">
-                Don't have an account?
-                <a href="{{ route('signup') }}" class="text-orange-500 hover:underline">Register here!</a>
+                Don't have user account?
+                <a href="{{ route('user.signup') }}" class="text-orange-500 hover:underline">Register here!</a>
             </p>
         </form>
     </div>
 </div>
+
+<script>
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+        const role = document.getElementById('role').value;
+        if (!role) {
+            e.preventDefault();
+            alert('Please select a role before logging in.');
+        }
+    });
+</script>
 
 @vite('resources/css/login.css')
 @endsection
