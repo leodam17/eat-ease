@@ -23,7 +23,7 @@
             <p class="text-sm text-[#4a3b2f] dark:text-[#d7d4cc] mb-8 leading-relaxed">
                 EatEase isn&apos;t just about food; it&apos;s about making your dining experience smoother, faster, and more enjoyable. Whether you&apos;re craving something familiar or exploring new flavors, EatEase will guide you to the perfect meal, every time. So, why wait? Come and join us on this flavorful journey. Let us help you rediscover the joy of eating, one bite at a time. Because the best meals are just a click away, and they&apos;re waiting for you here at EatEase.
             </p>
-            <a href="{{ route('home') }}" class="bg-[#d6a670] text-white py-3 px-6 rounded-md shadow-md hover:bg-[#bf8f5a] dark:hover:bg-[#a77e4a] transition">
+            <a href="{{ route('about') }}" class="bg-[#d6a670] text-white py-3 px-6 rounded-md shadow-md hover:bg-[#bf8f5a] dark:bg-[#a77e4a] dark:text-white dark:hover:bg-[#8f6c45] transition">
                 Back to Home
             </a>
         </div>
