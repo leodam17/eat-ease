@@ -15,20 +15,37 @@ class LoginController extends Controller
 
     public function login_auth(Request $request)
     {
-        $credentials = $request->validate([
-            'email' =>'required|email:dns',
-            'password'=> 'required',
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'role' => 'required|in:user,admin', // Validasi role
         ]);
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            $request->session()->regenerate();
-            
-            return redirect()->route('menu');
+        $credentials = $request->only('email', 'password');
+        $role = $request->role;
+
+        if ($role === 'user') {
+            // Autentikasi dari tabel `user`
+            $user = \DB::table('user')->where('email', $request->email)->first();
+
+            if ($user && \Hash::check($request->password, $user->password)) {
+                // Simpan sesi atau arahkan ke dashboard user
+                session(['user' => $user]);
+                return redirect()->route('user.dashboard');
+            }
+        } elseif ($role === 'admin') {
+            // Autentikasi dari tabel `admin`
+            $admin = \DB::table('admin')->where('email', $request->email)->first();
+
+            if ($admin && \Hash::check($request->password, $admin->password)) {
+                // Simpan sesi atau arahkan ke dashboard admin
+                session(['admin' => $admin]);
+                return redirect()->route('admin.dashboard');
+            }
         }
 
-        return back()->withErrors([
-            'error' => 'Email and password do not match!',
-        ]);
+        // Jika autentikasi gagal
+        return back()->withErrors(['error' => 'Invalid credentials or role.']);
     }
 
 

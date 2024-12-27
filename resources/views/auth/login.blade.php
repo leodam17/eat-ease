@@ -48,6 +48,27 @@
                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
                        style="font-size: 1.1rem;" required>
             </div>
+
+            <!-- Dropdown untuk memilih role -->
+            <div class="relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
+                    <!-- Icon Name -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path d="M12 12c2.485 0 4.5-2.015 4.5-4.5S14.485 3 12 3 7.5 5.015 7.5 7.5 9.515 12 12 12zM6.75 21h10.5c.746 0 1.38-.428 1.648-1.05-1.2-1.829-3.56-3.2-6.398-3.2s-5.198 1.371-6.398 3.2c.268.622.902 1.05 1.648 1.05z"/>
+                    </svg>
+                </span>
+                <select name="role" id="role" 
+                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
+                        style="font-size: 1.1rem;" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="user" class="text-gray-600">User</option>
+                    <option value="admin" class="text-gray-600">Admin</option>
+                </select>
+                @error('role')
+                    <div class="border border-red-500 text-red-500 text-xs italic">{{ $message }}</div>
+                @enderror
+            </div>
+
             <button type="submit" class="glow-button w-full">
                 Login
             </button>
@@ -60,4 +81,4 @@
 </div>
 
 @vite('resources/css/login.css')
-@endsection  
+@endsection
