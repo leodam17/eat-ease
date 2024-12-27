@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('user');
             $table->string('nama_pesanan');
-            $table->boolean('status_pesanan');
+            $table->boolean('status_pesanan')->default(0);
             $table->timestamps();
         });
     }

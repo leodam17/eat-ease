@@ -21,7 +21,8 @@ Route::get('/user/cart', [CartController::class, 'index'])->name('user.cart');
 Route::post('/user/cart/add', [CartController::class, 'add'])->name('user.cart.add');
 Route::delete('/user/cart/remove/{menuId}', [CartController::class, 'remove'])->name('user.cart.remove');
 Route::post('/user/cart/update/{menuId}', [CartController::class, 'updateQuantity'])->name('user.cart.update');
-Route::post('/checkout', [CartController::class, 'checkout'])->name('user.checkout');
+Route::post('/cart/order', [CartController::class, 'storeOrder'])->name('cart.storeOrder');
+
 
 // Route Signup
 Route::get('/signup', [SignupController::class, 'index'])->name('signup');

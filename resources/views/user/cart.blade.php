@@ -1,5 +1,7 @@
 @extends('base.base')
 
+@section('title', 'EatEase | Cart')
+
 @section('content')
 <style>
 /* Base Styles */
@@ -149,12 +151,11 @@
 <div class="min-h-screen bg-[#e7e3d8] dark:bg-[#1e1a14] py-12 mt-10">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
-        <a href="{{ url('/menu') }}" class="inline-block bg-[#d6a670] hover:bg-[#c89550] text-white font-medium py-1.5 px-3 rounded dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] mb-4 text-sm">
-            Back to Menu
-        </a>
-
-
         @if(count($menuDetails) > 0)
+            <a href="{{ url('/menu') }}" class="inline-block bg-[#d6a670] hover:bg-[#c89550] text-white font-medium py-1.5 px-3 rounded dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] mb-4 text-sm">
+                Back to Menu
+            </a>
+
             <!-- Cart Table -->
             <table class="cart-table w-full text-center border-collapse">
                 <thead>
@@ -223,9 +224,14 @@
             </div>
 
             <!-- Checkout Button -->
-            <button class="pay-now w-full mt-4 py-3 bg-[#d6a670] hover:bg-[#c89550] text-white font-bold rounded dark:bg-[#7c6539] dark:hover:bg-[#6a4e33]">
-                Pay Now
-            </button>
+            <form action="{{ route('cart.storeOrder') }}" method="POST" id="checkout-form">
+                @csrf
+                <input type="hidden" name="payment_method" id="payment-method-input">
+                <button type="submit" class="pay-now w-full mt-4 py-3 bg-[#d6a670] hover:bg-[#c89550] text-white font-bold rounded dark:bg-[#7c6539] dark:hover:bg-[#6a4e33]">
+                    Pay Now
+                </button>
+            </form>
+
 
         @else
             <!-- Empty Cart Message -->

@@ -3,6 +3,19 @@
 @section('title', 'EatEase | Home')
 
 @section('content')
+<style>
+    /* Customize the navigation buttons color to match the beige palette */
+    .swiper-button-prev, .swiper-button-next {
+        color: #D1B59D; /* Beige color */
+        transition: color 0.3s ease;
+    }
+
+    /* Optional: Add hover effect to darken the color */
+    .swiper-button-prev:hover, .swiper-button-next:hover {
+        color: #b79d6f; /* A slightly darker beige for hover effect */
+    }
+</style>
+
 <!-- Hero Section -->
 <div class="relative bg-cover bg-center h-screen" style="background-image: url('img/background.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -23,7 +36,7 @@
             <p class="text-sm text-[#4a3b2f] dark:text-[#d7d4cc] mb-8 leading-relaxed">
                 At EatEase, we understand the challenge of choosing the perfect meal. It&apos;s a dilemma we&apos;ve all faced — standing in front of a menu, feeling overwhelmed by the countless options, unsure of what to pick, and wondering if it&apos;s the right choice. It&apos;s not just about satisfying hunger; it&apos;s about the joy of eating, the pleasure of discovering new flavors, and the delight of finding something that feels just right.
             </p>
-            <a href="{{ route('about') }}" class="bg-[#d6a670] text-white py-3 px-6 rounded-md shadow-md hover:bg-[#bf8f5a] dark:hover:bg-[#a77e4a] transition">
+            <a href="{{ route('about') }}" class="bg-[#d6a670] text-white py-3 px-6 rounded-md shadow-md hover:bg-[#bf8f5a] dark:bg-[#a77e4a] dark:text-white dark:hover:bg-[#8f6c45] transition">
                 Learn More
             </a>
         </div>
@@ -45,25 +58,25 @@
                         <!-- Background Image -->
                         <img src="{{ asset('img/' . $menu->gambar) }}" alt="{{ $menu->nama }}" class="w-full h-[300px] object-cover">
                         <!-- Overlay Content -->
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-end p-4 text-white">
+                        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+                        <!-- Content -->
+                        <div class="absolute inset-0 flex flex-col justify-end p-4 text-white mb-2">
                             <h3 class="text-xl font-bold">{{ $menu->nama }}</h3>
                             <p class="text-sm">{{ $menu->deskripsi }}</p>
-                            <p class="text-lg font-bold mt-2">${{ $menu->harga }}</p>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
             <!-- Navigation Buttons -->
-            <div class="swiper-button-prev bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg"></div>
-            <div class="swiper-button-next bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg"></div>
+            <div class="swiper-button-prev text-[#D1B59D] dark:text-[#b79d6f] hover:text-[#b79d6f] dark:hover:text-[#a77e4a]"></div>
+            <div class="swiper-button-next text-[#D1B59D] dark:text-[#b79d6f] hover:text-[#b79d6f] dark:hover:text-[#a77e4a]"></div>
             <!-- Pagination -->
             <div class="swiper-pagination"></div>
         </div>
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 const swiper = new Swiper('.swiper', {
     slidesPerView: 1,
@@ -91,6 +104,13 @@ const swiper = new Swiper('.swiper', {
     pagination: {
         el: '.swiper-pagination',
         clickable: true,
+        renderBullet: function (index, className) {
+            return `<span class="${className} bg-[#D1B59D] dark:bg-[#b79d6f] w-2 h-2 rounded-full mx-1"></span>`;
+        },
+    },
+    autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
     },
 });
 </script>

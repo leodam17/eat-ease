@@ -121,22 +121,35 @@ class CartController extends Controller
         return $orderTotal;
     }
 
-    public function store(Request $request)
+    // Menyimpan order baru ke tabel order
+    public function storeOrder(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'nama_pesanan' => 'required|string|max:255',
-            'status_pesanan' => 'required|boolean'
-        ]);
-
-        // Simpan order ke database
-        $order = Order::create([
-            'user_id' => $request->user_id,
-            'nama_pesanan' => $request->nama_pesanan,
-            'status_pesanan' => $request->status_pesanan,
-        ]);
-
-        return response()->json(['success' => true, 'order' => $order]);
-    }
+        // Retrieve cart data from the session
+        $cart = session()->get('cart', []);
+        
+        // Get menu IDs from the cart
+        $menuIds = array_keys($cart);
+        $menus = Menu::whereIn('id', $menuIds)->get();
+    
+        // Loop through menus for each item in the cart
+        foreach ($menus as $menu) {
+            // Get quantity from the cart
+            $quantity = $cart[$menu->id]['quantity'];
+    
+            // Save each item as a separate order entry
+            for ($i = 0; $i < $quantity; $i++) {
+                Order::create([
+                    'user_id' => 1, // Replace with auth()->id() when authentication is implemented
+                    'nama_pesanan' => $menu->nama, // Corresponding menu name
+                    'status_pesanan' => 0, // Order status: 0 means active (not yet processed)
+                ]);
+            }
+        }
+    
+        // Clear the cart after saving orders
+        session()->forget('cart');
+    
+        // Redirect to the home page with a success message
+        return redirect('/home')->with('success', 'Thank you for your payment!');
+    }       
 }
