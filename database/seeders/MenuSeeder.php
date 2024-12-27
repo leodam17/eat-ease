@@ -147,7 +147,7 @@ class MenuSeeder extends Seeder
                 'nama' => 'Peanut Butter Banana Smoothie',
                 'gambar' => 'banana_smoothie.jpg',
                 'waktu_pengerjaan' => 10,
-                'deskripsi' => 'A creamy smoothie with the perfect blend of peanut butter and banana.',
+                'deskripsi' => 'The perfect blend of peanut butter and banana.',
                 'harga' => 50000,
                 'kategori' => 'Peanut',
                 'popularitas' => 6,

@@ -44,16 +44,17 @@
                             <input type="hidden" name="menu_id" value="{{ $menu->id }}">
 
                             <!-- Quantity Selector -->
-                            <div class="flex items-center rounded-lg bg-[#d6a670] dark:bg-[#c58a50] overflow-hidden">
+                            <div class="flex items-center rounded-lg bg-[#d6a670] dark:bg-[#c58a50] overflow-hidden max-w-[150px] mx-auto">
                                 <button type="button"
-                                    class="px-3 py-1 text-white hover:bg-[#c89550] dark:hover:bg-[#ad7640] transition-colors text-sm"
+                                    class="w-8 h-8 flex items-center justify-center text-white hover:bg-[#c89550] dark:hover:bg-[#ad7640] transition-colors text-sm"
                                     onclick="updateQuantity('decrease', '{{ $menu->id }}')">-</button>
                                 <input id="quantity-{{ $menu->id }}" name="quantity" type="number" value="1"
-                                    class="flex-1 text-center bg-[#d6a670] dark:bg-[#c58a50] text-white text-sm border-0 focus:outline-none">
+                                    class="w-12 h-8 text-center bg-[#d6a670] dark:bg-[#c58a50] text-white text-sm border-0 focus:outline-none">
                                 <button type="button"
-                                    class="px-3 py-1 text-white hover:bg-[#c89550] dark:hover:bg-[#ad7640] transition-colors text-sm"
+                                    class="w-8 h-8 flex items-center justify-center text-white hover:bg-[#c89550] dark:hover:bg-[#ad7640] transition-colors text-sm"
                                     onclick="updateQuantity('increase', '{{ $menu->id }}')">+</button>
                             </div>
+
 
                             <!-- Add to Cart Button -->
                             <button type="submit"

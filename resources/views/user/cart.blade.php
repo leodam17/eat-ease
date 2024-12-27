@@ -11,7 +11,7 @@
 
 .cart-table th, 
 .cart-table td {
-    text-align: left;
+    text-align: center;
     padding: 1rem;
     border-bottom: 1px solid #d1c6b1;
 }
@@ -40,6 +40,7 @@
 .quantity-controls {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
 }
 
@@ -50,6 +51,8 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    min-width: 30px; /* Ensures consistent button size */
+    text-align: center;
 }
 
 .quantity-btn:hover {
@@ -73,7 +76,6 @@
 } 
 
 .remove-item:hover {
-    color: #B71C1C; /* Warna merah lebih gelap saat hover */
     transform: scale(1.1); /* Efek zoom saat hover */
 }
 
@@ -84,6 +86,7 @@
     justify-content: space-between;
     font-size: 1rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .checkout-btn {
@@ -143,9 +146,14 @@
 }
 </style>
 
-
 <div class="min-h-screen bg-[#e7e3d8] dark:bg-[#1e1a14] py-12 mt-10">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <a href="{{ url('/menu') }}" class="inline-block bg-[#d6a670] hover:bg-[#c89550] text-white font-medium py-1.5 px-3 rounded dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] mb-4 text-sm">
+            Back to Menu
+        </a>
+
+
         @if(count($menuDetails) > 0)
             <!-- Cart Table -->
             <table class="cart-table w-full text-center border-collapse">
@@ -154,7 +162,7 @@
                         <th class="bg-[#f8f4ec] text-[#4a3b2f] dark:bg-[#333030] dark:text-[#e7e3d8] py-3 px-4">Food & Drink</th>
                         <th class="bg-[#f8f4ec] text-[#4a3b2f] dark:bg-[#333030] dark:text-[#e7e3d8] py-3 px-4">Price</th>
                         <th class="bg-[#f8f4ec] text-[#4a3b2f] dark:bg-[#333030] dark:text-[#e7e3d8] py-3 px-4">Qty</th>
-                        <th class="bg-[#f8f4ec] text-[#4a3b2f] dark:bg-[#333030] dark:text-[#e7e3d8] py-3 px-4">Total</th>
+                        <th class="bg-[#f8f4ec] text-[#4a3b2f] dark:bg-[#333030] dark:text-[#e7e3d8] py-3 px-4" style="width: 150px;">Total</th>
                         <th class="bg-[#f8f4ec] text-[#4a3b2f] dark:bg-[#333030] dark:text-[#e7e3d8] py-3 px-4"></th>
                     </tr>
                 </thead>
@@ -162,9 +170,9 @@
                     @foreach($menuDetails as $item)
                         <tr data-menu-id="{{ $item['id'] }}" class="border-b border-[#d6d1c4] dark:border-[#3a3631]">
                             <td class="py-4 px-4">
-                                <div class="flex items-center">
+                                <div class="flex flex-col items-center">
                                     <img src="{{ asset('img/' . $item['image']) }}" alt="{{ $item['name'] }}" class="w-16 h-16 rounded shadow">
-                                    <div class="ml-4">
+                                    <div class="mt-2">
                                         <p class="product-name text-[#4a3b2f] dark:text-[#e7e3d8] font-bold">{{ $item['name'] }}</p>
                                         <p class="product-details text-[#6b4f3b] dark:text-[#d1c7b0] text-sm">Category: {{ $item['category'] ?? 'Default' }}</p>
                                     </div>
@@ -174,12 +182,12 @@
                                 Rp<span class="font-bold">{{ number_format($item['price'], 0, ',', '.') }}</span>,<span style="font-size: 0.75rem;">00</span>
                             </td>
                             <td class="py-4 px-4">
-                                <div class="quantity-controls flex justify-center items-center">
-                                    <button class="quantity-btn text-white bg-[#d6a670] hover:bg-[#c89550] dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] rounded-l px-3 py-1"
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn text-white bg-[#d6a670] hover:bg-[#c89550] dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] rounded-l px-2 py-1 text-sm"
                                         data-action="decrease">-</button>
                                     <input type="text" value="{{ $item['quantity'] }}" readonly
-                                        class="quantity-input w-12 text-center bg-[#f8f4ec] text-[#4a3b2f] dark:bg-[#333030] dark:text-[#e7e3d8] border border-[#d6d1c4] dark:border-[#3a3631]">
-                                    <button class="quantity-btn text-white bg-[#d6a670] hover:bg-[#c89550] dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] rounded-r px-3 py-1"
+                                        class="quantity-input w-10 text-center bg-[#f8f4ec] text-[#4a3b2f] dark:bg-[#333030] dark:text-[#e7e3d8] border border-[#d6d1c4] dark:border-[#3a3631]">
+                                    <button class="quantity-btn text-white bg-[#d6a670] hover:bg-[#c89550] dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] rounded-r px-2 py-1 text-sm"
                                         data-action="increase">+</button>
                                 </div>
                             </td>
@@ -265,8 +273,12 @@
                 .then(data => {
                     // Update quantity and total price in the UI
                     quantityInput.value = data.quantity;
-                    totalPriceCell.textContent = `Rp${data.itemTotalPrice.toLocaleString('id-ID')}`;
-                    orderTotalCell.textContent = `Rp${data.orderTotal.toLocaleString('id-ID')}`;
+
+                    // Format Total Price
+                    totalPriceCell.innerHTML = `Rp<span class="font-bold">${data.itemTotalPrice.toLocaleString('id-ID')}</span>,<span style="font-size: 0.75rem;">00</span>`;
+
+                    // Format Order Total
+                    orderTotalCell.innerHTML = `Rp<span class="font-bold">${data.orderTotal.toLocaleString('id-ID')}</span>,<span style="font-size: 0.75rem;">00</span>`;
                 })
                 .catch(error => console.error('Error:', error));
             }
@@ -291,7 +303,9 @@
                 .then(data => {
                     // Remove item from UI and update order total
                     tableRow.remove();
-                    orderTotalCell.textContent = `Rp${data.orderTotal.toLocaleString('id-ID')}`;
+
+                    // Format Order Total
+                    orderTotalCell.innerHTML = `Rp<span class="font-bold">${data.orderTotal.toLocaleString('id-ID')}</span>,<span style="font-size: 0.75rem;">00</span>`;
                 })
                 .catch(error => console.error('Error:', error));
             }
