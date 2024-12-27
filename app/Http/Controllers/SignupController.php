@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Hash;
 
 class SignupController extends Controller
 {
+    public function index()
+    {
+        // Menampilkan view form signup
+        return view('auth.signup'); // Pastikan file signup.blade.php ada di folder resources/views/
+    }
+
     public function store(Request $request)
     {
         // Validasi input yang diterima
@@ -29,6 +35,6 @@ class SignupController extends Controller
         ]);
 
         // Redirect atau beri pesan sukses
-        return redirect()->route('login')->with('success', 'Account created successfully!');
+        return redirect()->route('user.login')->with('success', 'Account created successfully!');
     }
 }

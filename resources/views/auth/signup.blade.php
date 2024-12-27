@@ -22,7 +22,7 @@
         @endif
 
         <!-- Sign-Up Form -->
-        <form action="{{ route('signup.store') }}" method="POST" class="space-y-6">
+        <form action="{{ route('user.signup.store') }}" method="POST" class="space-y-6">
             @csrf
             <!-- Nama -->
             <div class="relative">
@@ -106,7 +106,7 @@
             </button>
             <p class="text-gray-600 mt-4">
                 Already have an account?
-                <a href="{{ route('login') }}" class="text-orange-500 hover:underline">Login</a>
+                <a href="{{ route('user.login') }}" class="text-orange-500 hover:underline">Login</a>
             </p>
         </form>
     </div>
