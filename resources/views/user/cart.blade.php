@@ -156,6 +156,7 @@
                 Back to Menu
             </a>
 
+            <div class="overflow-x-auto">
             <!-- Cart Table -->
             <table class="cart-table w-full text-center border-collapse">
                 <thead>
@@ -202,6 +203,8 @@
                     @endforeach
                 </tbody>
             </table>
+            </div>
+
 
             <!-- Payment Method Dropdown -->
             <div class="payment-method-container mt-4">

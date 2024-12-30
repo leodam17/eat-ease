@@ -1,4 +1,4 @@
-<footer class="bg-[#5a4e3a] dark:bg-[#3e2b1c] py-8">
+<footer class="bg-[#5a4e3a] dark:bg-[#3e2b1c] py-8 font-poppins">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-start">
             <div class="md:w-1/3">

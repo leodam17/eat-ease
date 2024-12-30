@@ -8,7 +8,8 @@ export default defineConfig({
                 'resources/css/app.css', 
                 'resources/js/app.js', 
                 'resources/css/login.css',
-                'resources/js/themetoggle.js'
+                'resources/js/themetoggle.js',
+                'resources/js/menubutton.js'
             ],
             refresh: true,
         }),

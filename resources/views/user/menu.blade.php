@@ -6,7 +6,9 @@
 <!-- Menu Section -->
 <div class="bg-[#e7e3d8] dark:bg-[#1e1a14] py-20 mt-10">
     <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold mb-8 text-center text-[#4a3b2f] dark:text-[#e7d7c4]">Our Menu</h2>
+        <h2 class="text-6xl font-bold mb-8 text-center text-[#4a3b2f] dark:text-[#e7d7c4]" style="font-family: 'Cookie', cursive;">
+            Our Menu
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach($menus as $menu)
             <div class="bg-[#ECE8D8] dark:bg-[#2b241c] text-[#4a3b2f] dark:text-[#e7d7c4] rounded-lg overflow-hidden shadow-lg">

@@ -8,6 +8,8 @@
     <title>@yield('title', 'EatEase')</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
@@ -15,10 +17,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/themetoggle.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/themetoggle.js', 'resources/js/menubutton.js'])
 </head>
 
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen font-poppins">
     @include('includes.header')
 
     <main class="flex-grow pt-0">
