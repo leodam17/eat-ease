@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\RecommendationController;
 
 //Route Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -23,6 +24,8 @@ Route::delete('/user/cart/remove/{menuId}', [CartController::class, 'remove'])->
 Route::post('/user/cart/update/{menuId}', [CartController::class, 'updateQuantity'])->name('user.cart.update');
 Route::post('/cart/order', [CartController::class, 'storeOrder'])->name('cart.storeOrder');
 
+// Route Recommendation
+Route::get('/recommendations/{userId}', [RecommendationController::class, 'recommend']);
 
 // Route Signup
 Route::get('/signup', [SignupController::class, 'index'])->name('signup');

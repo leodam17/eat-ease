@@ -35,6 +35,12 @@ class UserSeeder extends Seeder
             ['nama' => 'Wendy Harris', 'email' => 'wendyharris@user', 'password' => bcrypt('wendy'), 'preferensi' => 'vegan', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Xander Clark', 'email' => 'xanderclark@user', 'password' => bcrypt('xander'), 'preferensi' => 'normal', 'alergi' => 'milk', 'created_at' => now(), 'updated_at' => now()],
             ['nama' => 'Yara Scott', 'email' => 'yarascott@user', 'password' => bcrypt('yara'), 'preferensi' => 'vegan', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Zara Williams', 'email' => 'zarawilliams@user', 'password' => bcrypt('zara'), 'preferensi' => 'spicy', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Ethan Brown', 'email' => 'ethanbrown@user', 'password' => bcrypt('ethan'), 'preferensi' => 'spicy', 'alergi' => 'seafood', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Sophia Miller', 'email' => 'sophiamiller@user', 'password' => bcrypt('sophia'), 'preferensi' => 'spicy', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Anna Green', 'email' => 'annagreen@user', 'password' => bcrypt('anna'), 'preferensi' => 'non-spicy', 'alergi' => 'none', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Brian Taylor', 'email' => 'briantaylor@user', 'password' => bcrypt('brian'), 'preferensi' => 'non-spicy', 'alergi' => 'milk', 'created_at' => now(), 'updated_at' => now()],
+            ['nama' => 'Chloe White', 'email' => 'chloewhite@user', 'password' => bcrypt('chloe'), 'preferensi' => 'non-spicy', 'alergi' => 'peanut', 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
