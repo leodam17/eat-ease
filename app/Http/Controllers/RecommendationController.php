@@ -2,34 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Menu;
 use Illuminate\Http\Request;
 use Phpml\Clustering\KMeans;
 use Phpml\Math\Distance\Euclidean;
 use Phpml\Preprocessing\Normalizer;
 
-class HomeController extends Controller
+class RecommendationController extends Controller
 {
-    public function index()
+    public function recommend($userId)
     {
-        // Ambil data menu dari database dan urutkan berdasarkan popularitas
-        $menus = Menu::orderBy('popularitas', 'desc')->get();
-
-        // Hardcoded user ID untuk login sementara
-        $userId = 28; // ID pengguna yang login untuk testing
-        $loggedInUser = \DB::table('user')->where('id', $userId)->first();
-
-        // Jika user tidak ditemukan, beri respons error
-        if (!$loggedInUser) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-
-        // Step 1: Fetch data menu dan data user dari database
+        // Step 1: Fetch data from database
         $menu_data = \DB::table('menu')->get();
-        $users_data = \DB::table('user')->get();
+        $users_data = \DB::table('user')->get()->toArray();
 
         // Hardcoded user login for now
-        $loggedInUser = $users_data->firstWhere('id', $userId);
+        $loggedInUser = collect($users_data)->firstWhere('id', $userId);
         if (!$loggedInUser) {
             return response()->json(['error' => 'User not found'], 404);
         }
@@ -74,7 +61,7 @@ class HomeController extends Controller
         // Step 5: Define Allergy Categories
         $allergy_categories = [
             'seafood' => ['shrimp', 'crab', 'lobster', 'oysters', 'fish', 'squid', 'seafood'],
-            'peanut' => ['peanut', 'almond'],
+            'peanut' => ['peanut'],
             'chicken' => ['chicken'],
             'hazelnut' => ['hazelnut', 'nut'],
             'milk' => ['milk', 'cheese', 'cream'],
@@ -85,7 +72,7 @@ class HomeController extends Controller
         $user_allergy = strtolower($loggedInUser->alergi);
 
         // Step 6: Filter menus based on preference and allergy
-        $compatible_menus = collect($menu_data)->filter(function ($menu) use ($user_preference) {
+        $compatible_menus = array_filter($menu_data->toArray(), function ($menu) use ($user_preference) {
             if ($user_preference === 'vegan' && $menu->kategori !== 'Vegan') {
                 return false;
             }
@@ -97,11 +84,11 @@ class HomeController extends Controller
 
         // Filter menu based on spicy/non-spicy preference
         if ($user_preference === 'spicy') {
-            $compatible_menus = $compatible_menus->filter(function ($menu) {
+            $compatible_menus = array_filter($compatible_menus, function ($menu) {
                 return stripos($menu->nama, 'spicy') !== false || stripos($menu->kategori, 'spicy') !== false;
             });
         } elseif ($user_preference === 'non-spicy') {
-            $compatible_menus = $compatible_menus->filter(function ($menu) {
+            $compatible_menus = array_filter($compatible_menus, function ($menu) {
                 return stripos($menu->nama, 'spicy') === false && stripos($menu->kategori, 'spicy') === false;
             });
         }
@@ -109,7 +96,7 @@ class HomeController extends Controller
         // Filter menu based on allergies
         if (isset($allergy_categories[$user_allergy]) && $user_allergy !== 'none') {
             $allergic_ingredients = $allergy_categories[$user_allergy];
-            $compatible_menus = $compatible_menus->filter(function ($menu) use ($allergic_ingredients) {
+            $compatible_menus = array_filter($compatible_menus, function ($menu) use ($allergic_ingredients) {
                 foreach ($allergic_ingredients as $ingredient) {
                     if (stripos($menu->nama, $ingredient) !== false) {
                         return false;
@@ -121,23 +108,13 @@ class HomeController extends Controller
 
         // Step 7: Get top recommendations
         // We will just return the top 5 compatible menus
-        $recommendations_by_preferences = $compatible_menus->take(5);
+        $recommendations_by_preferences = array_slice(array_column($compatible_menus, 'id'), 0, 5);
 
         // Return recommendations view
-        return view('user.home', [
-            'menus' => $menus,
-            'recommendations_by_preferences' => $recommendations_by_preferences,
+        return view('user.recommendation', [
             'user' => $loggedInUser->nama,
+            'menus' => $menu_data,
+            'recommendations_by_preferences' => $recommendations_by_preferences,
         ]);
-    }
-
-    public function about()
-    {
-        return view('user.about');
-    }
-
-    public function menu()
-    {
-        return view('user.menu');
     }
 }

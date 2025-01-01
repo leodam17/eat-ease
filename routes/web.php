@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SignupController;
+use App\Http\Controllers\RecommendationController;
 
 
 // Route Signup
@@ -64,4 +65,6 @@ Route::middleware('auth:web')->group(function() {
 // });
 
 
+// Route Recommendation
+Route::get('/recommendations/{userId}', [RecommendationController::class, 'recommend']);
 
