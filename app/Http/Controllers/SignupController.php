@@ -2,39 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Users;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class SignupController extends Controller
 {
+
     public function index()
     {
-        // Menampilkan view form signup
-        return view('auth.signup'); // Pastikan file signup.blade.php ada di folder resources/views/
+        return view('user.signup');
     }
 
-    public function store(Request $request)
+    public function signup(Request $request)
     {
-        // Validasi input yang diterima
-        $validated = $request->validate([
-            'nama' => 'required|string|max:100',
-            'email' => 'required|email|unique:user,email',
-            'preferensi' => 'nullable|string|in:normal,vege/vegan', // Hanya menerima pilihan 'normal' atau 'vege/vegan'
-            'alergi' => 'nullable|string|in:none,seafood,peanut,tofu,milk,hazelnut', // Pilihan alergi yang valid
-            'password' => 'required|string|min:8|confirmed',
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email|unique:admins,email',
+            'password' => 'required|min:6|confirmed',
+            'role' => 'required|in:user,admin',
         ]);
 
-        // Menyimpan user baru dengan data yang valid
-        $user = User::create([
-            'nama' => $validated['nama'],
+        if ($request->role === 'admin') {
+            // Buat admin baru
+            Admin::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            return redirect()->route('admin.login');
+        } elseif ($request->role === 'user') {
+            // Buat user baru
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            return redirect()->route('login');
+        }
+
+        return back()->withErrors(['role' => 'Invalid role.']);
+    }
+
+    public function register(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
+        ]);
+
+        // Simpan pengguna baru
+        User::create([
+            'name' => $validated['name'],
             'email' => $validated['email'],
-            'preferensi' => $validated['preferensi'],
-            'alergi' => $validated['alergi'],
             'password' => bcrypt($validated['password']),
         ]);
 
-        // Redirect atau beri pesan sukses
-        return redirect()->route('user.login')->with('success', 'Account created successfully!');
+        return redirect()->route('login')->with('success', 'Signup successful!');
     }
 }

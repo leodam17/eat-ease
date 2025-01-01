@@ -21,7 +21,7 @@
             </div>
         @endif
 
-        <form id="login-form" action="{{ route('user.login_post') }}" method="POST" class="space-y-6">
+        <form id="login-form" action="{{ route('login_post') }}" method="POST" class="space-y-6">
             @csrf
             <div class="relative">
                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-white">
