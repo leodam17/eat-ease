@@ -18,7 +18,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/themetoggle.js', 'resources/js/menubutton.js'])
 </head>
 <style>
-    p, h2, h3, span {
+    p, h1, h2, h3, span {
         font-family: 'Cutive Mono', monospace;
     }
 

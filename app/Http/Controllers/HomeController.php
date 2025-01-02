@@ -16,7 +16,7 @@ class HomeController extends Controller
         $menus = Menu::orderBy('popularitas', 'desc')->get();
 
         // Hardcoded user ID untuk login sementara
-        $userId = 48; // ID pengguna yang login untuk testing
+        $userId = 45; // ID pengguna yang login untuk testing
         $loggedInUser = \DB::table('user')->where('id', $userId)->first();
 
         // Jika user tidak ditemukan, beri respons error

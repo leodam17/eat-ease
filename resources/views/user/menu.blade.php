@@ -3,12 +3,72 @@
 @section('title', 'EatEase | Menu')
 
 @section('content')
+<div class="relative w-full h-[400px] bg-cover bg-center" style="background-image: url('{{ asset('img/menu.webp') }}');">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center">
+        <!-- Breadcrumb -->
+        <div class="text-white text-sm mb-4">
+            <a href="/home" class="hover:underline">Home</a>
+            <span class="mx-2">></span>
+            <span>Menu</span>
+        </div>
+        <!-- Title -->
+        <h1 class="text-4xl font-bold text-white">Our Menu</h1>
+    </div>
+</div>
+
 <!-- Menu Section -->
-<div class="bg-[#e7e3d8] dark:bg-[#1e1a14] py-20 mt-10">
+<div class="bg-[#e7e3d8] dark:bg-[#1e1a14] py-10">
     <div class="container mx-auto px-4">
-        <h2 class="text-6xl font-bold mb-8 text-center text-[#4a3b2f] dark:text-[#e7d7c4]" style="font-family: 'Cookie', cursive;">
-            Our Menu
-        </h2>
+
+        <div class="bg-[#e7e3d8] dark:bg-[#1e1a14]">
+        <div class="container mx-auto px-4">
+        <!-- Search and Filter Form -->
+        <form method="GET" action="{{ route('menu') }}" class="mb-8 flex flex-col md:flex-row items-center gap-4">
+            <!-- Search -->
+            <div class="flex-1">
+                <input type="text" name="search" value="{{ request('search') }}" placeholder="Search..." 
+                    class="w-full px-4 py-2 border border-[#b68f29] dark:border-[#c58a50] rounded-lg focus:ring focus:ring-[#b68f29] dark:focus:ring-[#c58a50] text-[#4a3b2f] dark:text-[#2b241c]">
+            </div>
+
+            <!-- Filter by Category -->
+            <div>
+                <select name="kategori" class="px-4 py-2 border border-[#b68f29] dark:border-[#c58a50] rounded-lg focus:ring focus:ring-[#b68f29] dark:focus:ring-[#c58a50] text-[#4a3b2f] dark:text-[#2b241c]">
+                    <option value="">All Categories</option>
+                    <option value="Normal" {{ request('kategori') == 'Normal' ? 'selected' : '' }}>Normal</option>
+                    <option value="Vegan" {{ request('kategori') == 'Vegan' ? 'selected' : '' }}>Vegan</option>
+                    <option value="Spicy" {{ request('kategori') == 'Spicy' ? 'selected' : '' }}>Spicy</option>
+                    <option value="Dessert" {{ request('kategori') == 'Dessert' ? 'selected' : '' }}>Dessert</option>
+                </select>
+            </div>
+
+            <!-- Sort -->
+            <div>
+                <select name="sort" class="px-4 py-2 border border-[#b68f29] dark:border-[#c58a50] rounded-lg focus:ring focus:ring-[#b68f29] dark:focus:ring-[#c58a50] text-[#4a3b2f] dark:text-[#2b241c]">
+                    <option value="">Default</option>
+                    <option value="harga" {{ request('sort') == 'harga' ? 'selected' : '' }}>Price</option>
+                    <option value="popularitas" {{ request('sort') == 'popularitas' ? 'selected' : '' }}>Popularity</option>
+                    <option value="kalori" {{ request('sort') == 'kalori' ? 'selected' : '' }}>Calories</option>
+                </select>
+            </div>
+
+            <!-- Sort Direction -->
+            <div>
+                <select name="direction" class="px-4 py-2 border border-[#b68f29] dark:border-[#c58a50] rounded-lg focus:ring focus:ring-[#b68f29] dark:focus:ring-[#c58a50] text-[#4a3b2f] dark:text-[#2b241c]">
+                    <option value="asc" {{ request('direction') == 'asc' ? 'selected' : '' }}>Ascending</option>
+                    <option value="desc" {{ request('direction') == 'desc' ? 'selected' : '' }}>Descending</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="px-4 py-2 bg-[#d6a670] dark:bg-[#c58a50] text-white hover:bg-[#c89550] dark:hover:bg-[#ad7640] transition-colors rounded-lg font-medium text-sm">
+                    Apply
+                </button>
+            </div>
+        </form>
+
+        
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach($menus as $menu)
             <div class="bg-[#ECE8D8] dark:bg-[#2b241c] text-[#4a3b2f] dark:text-[#e7d7c4] rounded-lg overflow-hidden shadow-lg">
@@ -25,6 +85,7 @@
                             </svg>
                             {{ $menu->waktu_pengerjaan }} mins
                         </span>
+                        
                         <span class="flex items-center">
                             <!-- Icon for kcal -->
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 mr-2">
@@ -32,7 +93,17 @@
                             </svg>
                             {{ $menu->kalori }} kcal
                         </span>
+
+                        <span class="flex items-center">
+                            <!-- Popularity Star Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mr-1">
+                                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+                            </svg>
+                            <span>{{ $menu->popularitas }}/10</span>
+                        </span>
                     </div>
+
+
 
                     <!-- Display the price with a different color -->
                     <p class="text-lg font-bold text-[#b68f29] dark:text-[#d4af37] mb-4">
@@ -65,12 +136,6 @@
                             </button>
                         </form>
                     </div>
-
-
-
-
-
-
                 </div>
             </div>
             @endforeach
@@ -80,7 +145,7 @@
 
 <!-- Modal for Image Preview -->
 <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
-    <div class="relative bg-[#f5f1e6] dark:bg-[#2b241c] text-[#4a3b2f] dark:text-[#e7d7c4] rounded-lg p-4 w-11/12 max-w-4xl">
+    <div class="relative bg-[#f5f1e6] dark:bg-[#2b241c] text-[#4a3b2f] dark:text-[#2b241c] rounded-lg p-4 w-11/12 max-w-4xl">
         <!-- Close Button -->
         <button type="button" class="absolute top-2 right-2 focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
             onclick="closeModal()">
