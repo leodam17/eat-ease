@@ -22,7 +22,7 @@
     
     <div class="absolute inset-0 flex items-center justify-center text-center text-white">
         <div>
-            <h1 class="text-5xl font-bold mb-4">Taste the Magic of Every Bite</h1>
+            <h1 class="text-5xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">Taste the Magic of Every Bite</h1>
             <p class="text-xl">Step into a world where every bite tells a story, and every dish is a delight.</p>
         </div>
     </div>
@@ -88,10 +88,26 @@
                     <div class="p-4">
                         <h3 class="text-lg font-bold mb-2">{{ $menu->nama }}</h3>
                         <p class="text-sm mb-4">{{ $menu->deskripsi }}</p>
+                        
                         <div class="flex items-center justify-between text-sm text-[#4a3b2f] dark:text-[#d7d4cc] mb-4">
-                            <span><i class="fas fa-clock"></i> {{ $menu->waktu_pengerjaan }} mins</span>
-                            <span>{{ $menu->kalori }} kcal</span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 inline mr-2">
+                                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
+                                </svg>
+                                {{ $menu->waktu_pengerjaan }} mins
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 inline mr-2">
+                                    <path fill-rule="evenodd" d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z" clip-rule="evenodd" />
+                                </svg>
+                                {{ $menu->kalori }} kcal
+                            </span>
                         </div>
+
+                        <p class="text-lg font-bold text-[#b68f29] dark:text-[#d4af37] mb-4">
+                            Rp{{ number_format($menu->harga, 0, ',', '.') }}<span class="text-xs inline">,00</span>
+                        </p>
+
                         <div class="flex items-center justify-between">
                             <span class="text-[#d6a670] dark:text-[#bf8f5a]">
                                 @for($i = 1; $i <= 5; $i++)
@@ -99,13 +115,11 @@
                                 @endfor
                             </span>
                             
-                            <!-- Ganti Order Now dengan form berikut -->
                             <div class="flex items-center justify-center gap-4 w-full mt-4">
                                 <form action="{{ route('user.cart.add') }}" method="POST" class="flex items-center gap-4 w-full justify-center">
                                     @csrf
                                     <input type="hidden" name="menu_id" value="{{ $menu->id }}">
 
-                                    <!-- Quantity Selector -->
                                     <div class="flex items-center rounded-lg bg-[#d6a670] dark:bg-[#c58a50] overflow-hidden max-w-[150px]">
                                         <button type="button"
                                             class="w-8 h-8 flex items-center justify-center text-white hover:bg-[#c89550] dark:hover:bg-[#ad7640] transition-colors text-sm"
@@ -117,14 +131,12 @@
                                             onclick="updateQuantity('increase', '{{ $menu->id }}')">+</button>
                                     </div>
 
-                                    <!-- Add to Cart Button -->
                                     <button type="submit"
                                         class="px-4 py-2 bg-[#d6a670] dark:bg-[#c58a50] text-white hover:bg-[#c89550] dark:hover:bg-[#ad7640] transition-colors rounded-lg font-medium text-sm">
                                         Add to Cart
                                     </button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -132,6 +144,7 @@
         </div>
     </div>
 </div>
+
 
 
 

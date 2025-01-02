@@ -16,7 +16,7 @@ class HomeController extends Controller
         $menus = Menu::orderBy('popularitas', 'desc')->get();
 
         // Hardcoded user ID untuk login sementara
-        $userId = 28; // ID pengguna yang login untuk testing
+        $userId = 48; // ID pengguna yang login untuk testing
         $loggedInUser = \DB::table('user')->where('id', $userId)->first();
 
         // Jika user tidak ditemukan, beri respons error
@@ -77,7 +77,7 @@ class HomeController extends Controller
             'peanut' => ['peanut', 'almond'],
             'chicken' => ['chicken'],
             'hazelnut' => ['hazelnut', 'nut'],
-            'milk' => ['milk', 'cheese', 'cream'],
+            'milk' => ['milk', 'cheese', 'cream', 'milkshake'],
             'tofu' => ['tofu'], // Add tofu allergy category
         ];
 
@@ -86,32 +86,48 @@ class HomeController extends Controller
 
         // Step 6: Filter menus based on preference and allergy
         $compatible_menus = collect($menu_data)->filter(function ($menu) use ($user_preference) {
-            if ($user_preference === 'vegan' && $menu->kategori !== 'Vegan') {
-                return false;
+            // Check vegan/non-vegan based on category, name, and description
+            if ($user_preference === 'vegan') {
+                if ($menu->kategori !== 'Vegan' && stripos($menu->nama, 'vegan') === false && stripos($menu->deskripsi, 'vegan') === false) {
+                    return false;
+                }
             }
-            if ($user_preference === 'normal' && $menu->kategori === 'Vegan') {
-                return false;
+
+            if ($user_preference === 'normal') {
+                if ($menu->kategori === 'Vegan' || stripos($menu->nama, 'vegan') !== false || stripos($menu->deskripsi, 'vegan') !== false) {
+                    return false;
+                }
             }
+
+            // Add dessert preference check
+            if ($user_preference === 'dessert') {
+                // Ensure that the menu is categorized as 'Dessert' or has 'dessert' in its name or description
+                if ($menu->kategori !== 'Dessert' && stripos($menu->nama, 'dessert') === false && stripos($menu->deskripsi, 'dessert') === false) {
+                    return false;
+                }
+            }
+
             return true;
         });
 
         // Filter menu based on spicy/non-spicy preference
         if ($user_preference === 'spicy') {
             $compatible_menus = $compatible_menus->filter(function ($menu) {
-                return stripos($menu->nama, 'spicy') !== false || stripos($menu->kategori, 'spicy') !== false;
+                return (stripos($menu->nama, 'spicy') !== false || stripos($menu->kategori, 'spicy') !== false || stripos($menu->deskripsi, 'spicy') !== false);
             });
         } elseif ($user_preference === 'non-spicy') {
             $compatible_menus = $compatible_menus->filter(function ($menu) {
-                return stripos($menu->nama, 'spicy') === false && stripos($menu->kategori, 'spicy') === false;
+                return (stripos($menu->nama, 'spicy') === false && stripos($menu->kategori, 'spicy') === false && stripos($menu->deskripsi, 'spicy') === false);
             });
         }
+
 
         // Filter menu based on allergies
         if (isset($allergy_categories[$user_allergy]) && $user_allergy !== 'none') {
             $allergic_ingredients = $allergy_categories[$user_allergy];
             $compatible_menus = $compatible_menus->filter(function ($menu) use ($allergic_ingredients) {
                 foreach ($allergic_ingredients as $ingredient) {
-                    if (stripos($menu->nama, $ingredient) !== false) {
+                    if (stripos($menu->nama, $ingredient) !== false || stripos($menu->deskripsi, $ingredient) !== false) {
                         return false;
                     }
                 }
@@ -121,7 +137,7 @@ class HomeController extends Controller
 
         // Step 7: Get top recommendations
         // We will just return the top 5 compatible menus
-        $recommendations_by_preferences = $compatible_menus->take(5);
+        $recommendations_by_preferences = $compatible_menus->take(6);
 
         // Return recommendations view
         return view('user.home', [
