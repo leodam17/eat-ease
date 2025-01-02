@@ -427,7 +427,7 @@ class MenuSeeder extends Seeder
                 'nama' => 'Panna Cotta',
                 'gambar' => 'panna_cotta.webp',
                 'waktu_pengerjaan' => 40,
-                'deskripsi' => 'A creamy Italian dessert made with vanilla and cream.',
+                'deskripsi' => 'A creamy Italian dessert made with cream.',
                 'harga' => 45000,
                 'kategori' => 'Dessert',
                 'popularitas' => 7,
