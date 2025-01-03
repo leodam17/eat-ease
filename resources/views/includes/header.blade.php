@@ -104,7 +104,7 @@
                class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('about') ? 'underline' : '' }}">
                 About
             </a>
-            @if(auth()->check() && auth()->user() instanceof \App\Models\User)
+            @if(auth()->check() && auth()->user() instanceof \App\Models\Users)
             <a href="{{ route('user.menu') }}" 
                class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('menu') ? 'underline' : '' }}">
                 Menu
@@ -150,7 +150,7 @@
             class="block w-full px-4 py-2 text-sm font-semibold leading-6">
                 About
             </a>
-            @if(auth()->check() && auth()->user() instanceof \App\Models\User)
+            @if(auth()->check() && auth()->user() instanceof \App\Models\Users)
             <a href="{{ route('user.menu') }}" 
             class="block w-full px-4 py-2 text-sm font-semibold leading-6">
                 Menu
