@@ -3,29 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
-use Phpml\Clustering\KMeans;
-use Phpml\Preprocessing\Normalizer;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Pastikan user telah login
+        // Mengecek apakah user sudah login
         if (!Auth::check()) {
             return redirect()->route('login')->with('error', 'Please login first.');
         }
 
-        // Ambil data user yang sedang login
         $loggedInUser = Auth::user();
-
-        // Ambil data menu dari database dan urutkan berdasarkan popularitas
+    
+        // Digunakan untuk swipper
         $menus = Menu::orderBy('popularitas', 'desc')->get();
-
-        // Step 1: Fetch data menu
+    
         $menu_data = Menu::all();
-
-        // Step 2: Preprocess Menu Data
+    
+        // Kategori ditandai dengan angka
         $kategori_map = [];
         foreach ($menu_data as $menu) {
             if (!isset($kategori_map[$menu->kategori])) {
@@ -33,34 +30,8 @@ class HomeController extends Controller
             }
             $menu->kategori_encoded = $kategori_map[$menu->kategori];
         }
-
-        $menu_features = [];
-        foreach ($menu_data as $menu) {
-            if (isset($menu->kategori_encoded, $menu->harga, $menu->kalori)) {
-                $menu_features[] = [
-                    $menu->kategori_encoded,
-                    (float)$menu->harga,
-                    (float)$menu->kalori,
-                ];
-            }
-        }
-
-        // Step 3: Standardize Features for KMeans
-        $normalizer = new Normalizer(Normalizer::NORM_STD);
-        $normalizer->transform($menu_features);
-
-        // Step 4: K-Means Clustering (Optional)
-        $kmeans = new KMeans(3); // Example: 3 clusters
-        $clusters = $kmeans->cluster($menu_features);
-        foreach ($clusters as $cluster_id => $cluster_data) {
-            foreach ($cluster_data as $index) {
-                if (is_int($index) && isset($menu_data[$index])) {
-                    $menu_data[$index]->cluster = $cluster_id;
-                }
-            }
-        }
-
-        // Step 5: Define Allergy Categories
+    
+        // Alergi
         $allergy_categories = [
             'seafood' => ['shrimp', 'crab', 'lobster', 'oysters', 'fish', 'squid', 'seafood'],
             'peanut' => ['peanut', 'almond'],
@@ -69,43 +40,44 @@ class HomeController extends Controller
             'milk' => ['milk', 'cheese', 'cream', 'milkshake'],
             'tofu' => ['tofu'], // Add tofu allergy category
         ];
-
+    
+        // Mengambil preferensi dan alergi user
         $user_preference = $loggedInUser->preferensi;
         $user_allergy = strtolower($loggedInUser->alergi);
-
-        // Step 6: Filter menus based on preference and allergy
+    
         $compatible_menus = collect($menu_data)->filter(function ($menu) use ($user_preference) {
+            // Vegan
             if ($user_preference === 'vegan') {
                 if ($menu->kategori !== 'Vegan' && stripos($menu->nama, 'vegan') === false && stripos($menu->deskripsi, 'vegan') === false) {
                     return false;
                 }
             }
-
+    
+            // Normal
             if ($user_preference === 'normal') {
-                if ($menu->kategori === 'Vegan' || stripos($menu->nama, 'vegan') !== false || stripos($menu->deskripsi, 'vegan') !== false) {
+                if ($menu->kategori !== 'Normal') {
                     return false;
                 }
             }
-
+    
+            // Dessert
             if ($user_preference === 'dessert') {
                 if ($menu->kategori !== 'Dessert' && stripos($menu->nama, 'dessert') === false && stripos($menu->deskripsi, 'dessert') === false) {
                     return false;
                 }
             }
 
+            // Spicy
+            if ($user_preference === 'spicy') {
+                if (stripos($menu->nama, 'spicy') === false && stripos($menu->kategori, 'spicy') === false && stripos($menu->deskripsi, 'spicy') === false) {
+                    return false;
+                }
+            }
+    
             return true;
         });
-
-        if ($user_preference === 'spicy') {
-            $compatible_menus = $compatible_menus->filter(function ($menu) {
-                return (stripos($menu->nama, 'spicy') !== false || stripos($menu->kategori, 'spicy') !== false || stripos($menu->deskripsi, 'spicy') !== false);
-            });
-        } elseif ($user_preference === 'non-spicy') {
-            $compatible_menus = $compatible_menus->filter(function ($menu) {
-                return (stripos($menu->nama, 'spicy') === false && stripos($menu->kategori, 'spicy') === false && stripos($menu->deskripsi, 'spicy') === false);
-            });
-        }
-
+    
+        // Menyaring menu berdasarkan alergi user
         if (isset($allergy_categories[$user_allergy]) && $user_allergy !== 'none') {
             $allergic_ingredients = $allergy_categories[$user_allergy];
             $compatible_menus = $compatible_menus->filter(function ($menu) use ($allergic_ingredients) {
@@ -117,11 +89,45 @@ class HomeController extends Controller
                 return true;
             });
         }
-
-        // Step 7: Get top recommendations
-        $recommendations = $compatible_menus->take(6);
-
-        // Return recommendations view
+    
+        $user_orders = Order::where('user_id', $loggedInUser->id)->get();
+    
+        $user_order_names = $user_orders->pluck('nama_pesanan')->toArray();
+    
+        // KNN
+        $distances = [];
+        foreach ($compatible_menus as $menu) {
+            $current_menu = [
+                'menu_name' => $menu->nama,
+                'kategori_encoded' => $menu->kategori_encoded,
+                'harga' => (float)$menu->harga,
+                'kalori' => (float)$menu->kalori,
+                'waktu_pengerjaan' => (float)$menu->waktu_pengerjaan,
+            ];
+    
+            $distance = 0;
+            foreach ($user_order_names as $ordered_item) {
+                $ordered_menu = Menu::where('nama', $ordered_item)->first();
+    
+                if ($ordered_menu) {
+                    // Menggunakan Euclidean Distance
+                    $distance += pow($current_menu['harga'] - $ordered_menu->harga, 2)
+                               + pow($current_menu['kalori'] - $ordered_menu->kalori, 2)
+                               + pow($current_menu['waktu_pengerjaan'] - $ordered_menu->waktu_pengerjaan, 2);
+                }
+            }
+    
+            $distances[] = ['menu' => $menu, 'distance' => sqrt($distance)];
+        }
+    
+        // Mengurutkan menu berdasarkan jarak
+        usort($distances, function ($a, $b) {
+            return $a['distance'] <=> $b['distance'];
+        });
+    
+        // Mengambil 6 menu terdekat
+        $recommendations = collect($distances)->take(6)->pluck('menu');
+    
         return view('user.home', [
             'menus' => $menus,
             'recommendations' => $recommendations,
@@ -129,8 +135,6 @@ class HomeController extends Controller
         ]);
     }
     
-    
-
     public function about()
     {
         return view('user.about');
