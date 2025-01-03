@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Database\Seeders;
 
@@ -12,7 +12,7 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
-        $menuItems = [
+        DB::table('menu')->insert([
             [
                 'nama' => 'Seafood Pasta',
                 'gambar' => 'seafood_pasta.webp',
@@ -22,6 +22,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Seafood',
                 'popularitas' => 7,
                 'kalori' => 600,
+                'total_pemesanan' => 45,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Shrimp Salad',
@@ -32,6 +35,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Seafood',
                 'popularitas' => 8,
                 'kalori' => 450,
+                'total_pemesanan' => 36,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Vegan Burger',
@@ -42,6 +48,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 8,
                 'kalori' => 500,
+                'total_pemesanan' => 52,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Vegetable Stir Fry',
@@ -52,6 +61,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 7,
                 'kalori' => 350,
+                'total_pemesanan' => 60,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Tofu Salad',
@@ -62,6 +74,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 6,
                 'kalori' => 400,
+                'total_pemesanan' => 41,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Grilled Chicken',
@@ -72,6 +87,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Chicken',
                 'popularitas' => 9,
                 'kalori' => 550,
+                'total_pemesanan' => 75,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Beef Steak',
@@ -82,6 +100,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 10,
                 'kalori' => 700,
+                'total_pemesanan' => 33,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Fried Rice',
@@ -92,6 +113,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 8,
                 'kalori' => 450,
+                'total_pemesanan' => 60,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Spaghetti Bolognese',
@@ -102,6 +126,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 7,
                 'kalori' => 500,
+                'total_pemesanan' => 42,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Green Detox Juice',
@@ -112,6 +139,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 5,
                 'kalori' => 150,
+                'total_pemesanan' => 28,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Almond Milk Latte',
@@ -122,6 +152,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 9,
                 'kalori' => 120,
+                'total_pemesanan' => 68,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Peanut Butter Milkshake',
@@ -132,6 +165,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Peanut',
                 'popularitas' => 5,
                 'kalori' => 300,
+                'total_pemesanan' => 49,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Hazelnut Coffee',
@@ -142,6 +178,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Hazelnut',
                 'popularitas' => 7,
                 'kalori' => 200,
+                'total_pemesanan' => 41,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Peanut Butter Banana Smoothie',
@@ -152,6 +191,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Peanut',
                 'popularitas' => 6,
                 'kalori' => 300,
+                'total_pemesanan' => 57,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Iced Tea',
@@ -162,6 +204,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 7,
                 'kalori' => 100,
+                'total_pemesanan' => 63,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Coconut Water',
@@ -172,6 +217,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 6,
                 'kalori' => 50,
+                'total_pemesanan' => 55,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Spicy Ramen',
@@ -182,6 +230,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Spicy',
                 'popularitas' => 9,
                 'kalori' => 550,
+                'total_pemesanan' => 48,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Chocolate Lava Cake',
@@ -192,6 +243,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 8,
                 'kalori' => 450,
+                'total_pemesanan' => 30,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Grilled Salmon',
@@ -202,6 +256,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Seafood',
                 'popularitas' => 10,
                 'kalori' => 650,
+                'total_pemesanan' => 22,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Mango Smoothie',
@@ -212,7 +269,10 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 7,
                 'kalori' => 200,
-            ],            
+                'total_pemesanan' => 50,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],         
             [
                 'nama' => 'Spicy Tofu Stir Fry',
                 'gambar' => 'spicy_tofu.jpg',
@@ -222,6 +282,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Spicy',
                 'popularitas' => 8,
                 'kalori' => 400,
+                'total_pemesanan' => 57,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Chili Crab',
@@ -232,6 +295,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Spicy',
                 'popularitas' => 10,
                 'kalori' => 400,
+                'total_pemesanan' => 35,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Vegan Pizza',
@@ -242,6 +308,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 4,
                 'kalori' => 450,
+                'total_pemesanan' => 40,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Vegan Avocado Toast',
@@ -252,6 +321,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 4,
                 'kalori' => 300,
+                'total_pemesanan' => 60,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Bacon Cheeseburger',
@@ -262,6 +334,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 7,
                 'kalori' => 800,
+                'total_pemesanan' => 45,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Spicy Chicken Wings',
@@ -272,6 +347,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Spicy',
                 'popularitas' => 5,
                 'kalori' => 450,
+                'total_pemesanan' => 30,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Spicy Shrimp Tacos',
@@ -282,6 +360,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Spicy',
                 'popularitas' => 4,
                 'kalori' => 400,
+                'total_pemesanan' => 29,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Mac and Cheese',
@@ -292,6 +373,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 5,
                 'kalori' => 700,
+                'total_pemesanan' => 52,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Chocolate Milkshake',
@@ -302,6 +386,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 4,
                 'kalori' => 600,
+                'total_pemesanan' => 20,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Vegan Lentil Soup',
@@ -312,6 +399,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 4,
                 'kalori' => 250,
+                'total_pemesanan' => 28,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Vegan Tacos',
@@ -322,6 +412,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 5,
                 'kalori' => 300,
+                'total_pemesanan' => 35,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Spicy Tofu Rice Bowl',
@@ -332,6 +425,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Spicy',
                 'popularitas' => 6,
                 'kalori' => 400,
+                'total_pemesanan' => 47,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Spicy Beef Tacos',
@@ -342,6 +438,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Spicy',
                 'popularitas' => 7,
                 'kalori' => 450,
+                'total_pemesanan' => 60,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Spicy Pork Ribs',
@@ -352,6 +451,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Spicy',
                 'popularitas' => 10,
                 'kalori' => 750,
+                'total_pemesanan' => 70,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Cold Brew Coffee',
@@ -362,6 +464,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 8,
                 'kalori' => 50,
+                'total_pemesanan' => 100,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Lemonade',
@@ -372,6 +477,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 8,
                 'kalori' => 100,
+                'total_pemesanan' => 120,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Vegan Buddha Bowl',
@@ -382,6 +490,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Vegan',
                 'popularitas' => 9,
                 'kalori' => 500,
+                'total_pemesanan' => 25,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Chicken Alfredo',
@@ -392,6 +503,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Normal',
                 'popularitas' => 8,
                 'kalori' => 700,
+                'total_pemesanan' => 65,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Cheesecake',
@@ -402,6 +516,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 8,
                 'kalori' => 500,
+                'total_pemesanan' => 40,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Tiramisu',
@@ -412,7 +529,10 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 7,
                 'kalori' => 550,
-            ], 
+                'total_pemesanan' => 30,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
             [
                 'nama' => 'Apple Pie',
                 'gambar' => 'apple_pie.jpg',
@@ -422,6 +542,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 8,
                 'kalori' => 400,
+                'total_pemesanan' => 60,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Panna Cotta',
@@ -432,6 +555,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 7,
                 'kalori' => 380,
+                'total_pemesanan' => 55,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Lemon Sorbet',
@@ -442,6 +568,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 6,
                 'kalori' => 200,
+                'total_pemesanan' => 45,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Fruit Tart',
@@ -452,6 +581,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 8,
                 'kalori' => 380,
+                'total_pemesanan' => 50,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Chocolate Cake',
@@ -462,6 +594,9 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 8,
                 'kalori' => 350,
+                'total_pemesanan' => 32,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'nama' => 'Apple Cinnamon Cake',
@@ -472,29 +607,10 @@ class MenuSeeder extends Seeder
                 'kategori' => 'Dessert',
                 'popularitas' => 7,
                 'kalori' => 300,
-            ],                                   
-        ];        
-
-        // untuk menghitung jumlah order
-        foreach ($menuItems as $item) {
-            $totalOrders = DB::table('order')
-                ->where('nama_pesanan', $item['nama'])
-                ->where('status_pesanan', true)
-                ->count();
-
-            DB::table('menu')->insert([
-                'nama' => $item['nama'],
-                'gambar' => $item['gambar'],
-                'waktu_pengerjaan' => $item['waktu_pengerjaan'],
-                'deskripsi' => $item['deskripsi'],
-                'harga' => $item['harga'],
-                'kategori' => $item['kategori'],
-                'popularitas' => $item['popularitas'],
-                'kalori' => $item['kalori'],
-                'total_pemesanan' => $totalOrders,
+                'total_pemesanan' => 30,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]);
-        }
+            ]                    
+        ]);
     }
-}  
+}
