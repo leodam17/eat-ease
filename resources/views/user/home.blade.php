@@ -82,7 +82,7 @@
         </h2>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($recommendations_by_preferences as $menu)
+            @foreach($recommendations as $menu)
             <div class="bg-[#ECE8D8] dark:bg-[#3e352f] text-[#4a3b2f] dark:text-[#e7d7c4] rounded-lg overflow-hidden shadow-lg">
             <img src="{{ asset('img/' . $menu->gambar) }}" alt="{{ $menu->nama }}" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('{{ asset('img/' . $menu->gambar) }}')">
                     <div class="p-4">

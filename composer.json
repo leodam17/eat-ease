@@ -11,7 +11,8 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "league/commonmark": "2.6",
-        "php-ai/php-ml": "*"
+        "php-ai/php-ml": "*",
+        "rubix/ml": "^2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

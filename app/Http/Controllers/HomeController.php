@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
-use Illuminate\Http\Request;
 use Phpml\Clustering\KMeans;
 use Phpml\Preprocessing\Normalizer;
 use Illuminate\Support\Facades\Auth;
@@ -120,15 +119,17 @@ class HomeController extends Controller
         }
 
         // Step 7: Get top recommendations
-        $recommendations_by_preferences = $compatible_menus->take(6);
+        $recommendations = $compatible_menus->take(6);
 
         // Return recommendations view
         return view('user.home', [
             'menus' => $menus,
-            'recommendations_by_preferences' => $recommendations_by_preferences,
+            'recommendations' => $recommendations,
             'user' => $loggedInUser->nama,
         ]);
     }
+    
+    
 
     public function about()
     {
