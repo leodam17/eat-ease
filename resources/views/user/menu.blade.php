@@ -24,7 +24,7 @@
         <div class="bg-[#e7e3d8] dark:bg-[#1e1a14]">
         <div class="container mx-auto px-4">
         <!-- Search and Filter Form -->
-        <form method="GET" action="{{ route('menu') }}" class="mb-8 flex flex-col md:flex-row items-center gap-4">
+        <form method="GET" action="{{ route('user.menu') }}" class="mb-8 flex flex-col md:flex-row items-center gap-4">
             <!-- Search -->
             <div class="flex-1">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Search..." 

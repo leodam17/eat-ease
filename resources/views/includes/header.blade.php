@@ -184,46 +184,51 @@
 
 
 <script>
-    function applyNavbarTheme() {
-        const navbar = document.getElementById('navbar');
-        const navbarTitle = document.getElementById('navbar-title');
-        const navLinks = document.querySelectorAll('#navbar a'); // Semua tautan navigasi
-        const themeToggle = document.getElementById('theme-toggle');
-        const logoutButton = document.getElementById('logout-button');
+function handleNavbarBackground() {
+    const navbar = document.getElementById('navbar');
+    const navbarTitle = document.getElementById('navbar-title');
+    const themeToggle = document.getElementById('theme-toggle');
+    const logoutButton = document.getElementById('logout-button');
+    const navLinks = document.querySelectorAll('#navbar a'); // Menargetkan semua tautan di navbar
 
-        // Hapus kelas tema sebelumnya
-        navbar.classList.remove('bg-[#4a3b2f]', 'bg-[#e7d7c4]');
+    if (window.scrollY > 0) {
+        navbar.classList.add('shadow');
 
-        // Periksa apakah mode dark aktif
         if (document.documentElement.classList.contains('dark')) {
-            // Tema dark
             navbar.classList.add('bg-[#4a3b2f]');
+            navbar.classList.remove('bg-transparent');
             navbarTitle.style.color = '#e7d7c4';
-            navLinks.forEach(link => (link.style.color = '#e7d7c4')); // Sesuaikan warna tautan
             themeToggle.style.color = '#e7d7c4';
             logoutButton.style.color = '#e7d7c4';
             logoutButton.style.borderColor = '#e7d7c4';
+            navLinks.forEach(link => {
+                link.style.color = '#e7d7c4'; // Tautan warna terang pada dark mode
+            });
         } else {
-            // Tema light
             navbar.classList.add('bg-[#e7d7c4]');
+            navbar.classList.remove('bg-transparent');
             navbarTitle.style.color = '#4a3b2f';
-            navLinks.forEach(link => (link.style.color = '#4a3b2f')); // Sesuaikan warna tautan
             themeToggle.style.color = '#4a3b2f';
             logoutButton.style.color = '#4a3b2f';
             logoutButton.style.borderColor = '#4a3b2f';
+            navLinks.forEach(link => {
+                link.style.color = '#4a3b2f'; // Tautan warna gelap pada light mode
+            });
         }
+    } else {
+        navbar.classList.remove('bg-[#e7d7c4]', 'bg-[#4a3b2f]', 'shadow');
+        navbar.classList.add('bg-transparent');
+        navbarTitle.style.color = '';
+        themeToggle.style.color = '';
+        logoutButton.style.color = '';
+        logoutButton.style.borderColor = '';
+        navLinks.forEach(link => {
+            link.style.color = ''; // Setel warna tautan ke default saat navbar transparan
+        });
     }
+}
 
-    function toggleTheme() {
-        // Toggle class pada elemen <html> untuk mode dark
-        document.documentElement.classList.toggle('dark');
-        // Terapkan tema setelah toggle
-        applyNavbarTheme();
-    }
+window.addEventListener('scroll', handleNavbarBackground);
 
-    // Pasang event listener untuk inisialisasi dan toggle
-    document.addEventListener('DOMContentLoaded', () => {
-        applyNavbarTheme();
-        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
-    });
+handleNavbarBackground();
 </script>

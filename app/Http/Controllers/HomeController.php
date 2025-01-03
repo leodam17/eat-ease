@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
-use App\Models\Users;
 use Illuminate\Http\Request;
 use Phpml\Clustering\KMeans;
-use Phpml\Math\Distance\Euclidean;
 use Phpml\Preprocessing\Normalizer;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,30 +12,21 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // Pastikan user telah login
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Please login first.');
+        }
+
+        // Ambil data user yang sedang login
+        $loggedInUser = Auth::user();
+
         // Ambil data menu dari database dan urutkan berdasarkan popularitas
         $menus = Menu::orderBy('popularitas', 'desc')->get();
 
-        // Hardcoded user ID untuk login sementara
-        $userId = 45; // ID pengguna yang login untuk testing
-        $loggedInUser = \DB::table('user')->where('id', $userId)->first();
-
-        // Jika user tidak ditemukan, beri respons error
-        if (!$loggedInUser) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-
-        // Step 1: Fetch data menu dan data user dari database
-        $menu_data = \DB::table('menu')->get();
-        $users_data = \DB::table('user')->get();
-
-        // Hardcoded user login for now
-        $loggedInUser = $users_data->firstWhere('id', $userId);
-        if (!$loggedInUser) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
+        // Step 1: Fetch data menu
+        $menu_data = Menu::all();
 
         // Step 2: Preprocess Menu Data
-        // Encode 'kategori' to numerical values
         $kategori_map = [];
         foreach ($menu_data as $menu) {
             if (!isset($kategori_map[$menu->kategori])) {
@@ -46,7 +35,6 @@ class HomeController extends Controller
             $menu->kategori_encoded = $kategori_map[$menu->kategori];
         }
 
-        // Features for clustering: 'kategori_encoded', 'harga', 'kalori'
         $menu_features = [];
         foreach ($menu_data as $menu) {
             if (isset($menu->kategori_encoded, $menu->harga, $menu->kalori)) {
@@ -88,7 +76,6 @@ class HomeController extends Controller
 
         // Step 6: Filter menus based on preference and allergy
         $compatible_menus = collect($menu_data)->filter(function ($menu) use ($user_preference) {
-            // Check vegan/non-vegan based on category, name, and description
             if ($user_preference === 'vegan') {
                 if ($menu->kategori !== 'Vegan' && stripos($menu->nama, 'vegan') === false && stripos($menu->deskripsi, 'vegan') === false) {
                     return false;
@@ -101,9 +88,7 @@ class HomeController extends Controller
                 }
             }
 
-            // Add dessert preference check
             if ($user_preference === 'dessert') {
-                // Ensure that the menu is categorized as 'Dessert' or has 'dessert' in its name or description
                 if ($menu->kategori !== 'Dessert' && stripos($menu->nama, 'dessert') === false && stripos($menu->deskripsi, 'dessert') === false) {
                     return false;
                 }
@@ -112,7 +97,6 @@ class HomeController extends Controller
             return true;
         });
 
-        // Filter menu based on spicy/non-spicy preference
         if ($user_preference === 'spicy') {
             $compatible_menus = $compatible_menus->filter(function ($menu) {
                 return (stripos($menu->nama, 'spicy') !== false || stripos($menu->kategori, 'spicy') !== false || stripos($menu->deskripsi, 'spicy') !== false);
@@ -123,8 +107,6 @@ class HomeController extends Controller
             });
         }
 
-
-        // Filter menu based on allergies
         if (isset($allergy_categories[$user_allergy]) && $user_allergy !== 'none') {
             $allergic_ingredients = $allergy_categories[$user_allergy];
             $compatible_menus = $compatible_menus->filter(function ($menu) use ($allergic_ingredients) {
@@ -138,7 +120,6 @@ class HomeController extends Controller
         }
 
         // Step 7: Get top recommendations
-        // We will just return the top 5 compatible menus
         $recommendations_by_preferences = $compatible_menus->take(6);
 
         // Return recommendations view
