@@ -10,11 +10,13 @@ return new class extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->id();
-            $table->string('nama',100);
+            $table->string('nama', 100);
             $table->string('password', 100);
             $table->string('email')->unique();
-            $table->string('preferensi',100)->nullable();
-            $table->string('alergi',100)->nullable();
+            $table->string('preferensi', 100)->nullable();
+            $table->string('alergi', 100)->nullable();
+            $table->string('role', 50)->default('user'); // Menambahkan kolom role
+            $table->boolean('is_admin')->default(false); // Menambahkan kolom is_admin
             $table->timestamps();
         });
     }

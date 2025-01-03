@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Phpml\Clustering\KMeans;
 use Phpml\Math\Distance\Euclidean;
 use Phpml\Preprocessing\Normalizer;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {

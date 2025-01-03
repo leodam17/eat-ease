@@ -2,32 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\Users;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class SignupController extends Controller
 {
+
     public function index()
     {
-        return view('auth.signup'); // View untuk halaman signup
+        return view('user.signup');
+    }
+
+    public function signup(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email|unique:admins,email',
+            'password' => 'required|min:6|confirmed',
+            'role' => 'required|in:user,admin',
+        ]);
+
+        if ($request->role === 'admin') {
+            // Buat admin baru
+            Admin::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            return redirect()->route('admin.login');
+        } elseif ($request->role === 'user') {
+            // Buat user baru
+            User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            return redirect()->route('login');
+        }
+
+        return back()->withErrors(['role' => 'Invalid role.']);
     }
 
     public function register(Request $request)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email:dns|unique:admin,email',
-            'password' => 'required|string|min:8|confirmed',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:8',
         ]);
 
-        // Simpan data admin ke database
-        Admin::create([
-            'nama' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
+        // Simpan pengguna baru
+        User::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
         ]);
 
-        return redirect()->route('login')->with('success', 'Account created successfully. Please login.');
+        return redirect()->route('login')->with('success', 'Signup successful!');
     }
 }
