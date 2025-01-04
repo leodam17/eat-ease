@@ -161,4 +161,9 @@ class HomeController extends Controller
             'admin' => $loggedInAdmin->nama,
         ]);
     }
+
+    public function adminAbout()
+    {
+        return view('admin.about');
+    }
 }

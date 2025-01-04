@@ -25,7 +25,7 @@ class LoginController extends Controller
         $admin = Admin::where('email', $request->email)->first();
         if ($admin && \Hash::check($request->password, $admin->password)) {
             Auth::login($admin);
-            // return redirect()->route('admin.about');
+            return redirect()->route('admin.home');
         }
 
         $user = Users::where('email', $request->email)->first();

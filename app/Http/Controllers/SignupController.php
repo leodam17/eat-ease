@@ -23,19 +23,23 @@ class SignupController extends Controller
     {
         // Validasi input
         $request->validate([
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email', // Pastikan email unik di tabel users
             'password' => 'required|string|min:6|confirmed', // Pastikan password dikonfirmasi
+            'preferensi' => 'nullable|string|in:normal,vege/vegan', // Validasi preferensi
+            'alergi' => 'nullable|string|in:none,seafood,peanut,tofu,milk,hazelnut',
         ]);
 
         // Buat pengguna baru
         Users::create([
-            'name' => $request->name,
+            'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password), // Enkripsi password
+            'preferensi' => $request->preferensi, // Simpan preferensi
+            'alergi' => $request->alergi,
         ]);
 
         // Redirect ke halaman login dengan pesan sukses
-        return redirect()->route('/login')->with('success', 'Signup successful! Please log in.');
+        return redirect()->route('login')->with('success', 'Signup successful! Please log in.');
     }
 }

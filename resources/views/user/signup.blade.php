@@ -31,7 +31,7 @@
                         <path d="M12 12c2.485 0 4.5-2.015 4.5-4.5S14.485 3 12 3 7.5 5.015 7.5 7.5 9.515 12 12 12zM6.75 21h10.5c.746 0 1.38-.428 1.648-1.05-1.2-1.829-3.56-3.2-6.398-3.2s-5.198 1.371-6.398 3.2c.268.622.902 1.05 1.648 1.05z"/>
                     </svg>
                 </span>
-                <input type="text" name="nama" id="nama" placeholder="Nama" 
+                <input type="text" name="nama" id="nama" placeholder="Name" 
                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
                        style="font-size: 1.1rem;" required>
             </div>
