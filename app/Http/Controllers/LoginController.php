@@ -15,7 +15,6 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-
     public function login_auth(Request $request)
     {
         // Validasi input login
@@ -25,32 +24,28 @@ class LoginController extends Controller
         $admin = Admin::where('email', $request->email)->first();
         if ($admin && \Hash::check($request->password, $admin->password)) {
             Auth::login($admin);
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.home')->with('success', 'Welcome, Admin! You have successfully logged in.');
         }
 
         $user = Users::where('email', $request->email)->first();
         if ($user && \Hash::check($request->password, $user->password)) {
             Auth::login($user);
-            return redirect()->route('user.home');
+            return redirect()->route('user.home')->with('success', 'Welcome back! You have successfully logged in.');
         }
 
         return back()->with('error', 'Invalid credentials');
     }
 
-
     public function logout(Request $request)
     {
-        // Logout user
-        Auth::logout();
-
-        // Invalidate session
         $request->session()->invalidate();
-
-        // Regenerate CSRF token
         $request->session()->regenerateToken();
 
-        // Redirect ke halaman login atau logout
-        return redirect()->route('/login')->with('success', 'Logged out successfully!');
+        return redirect()->route('logout.page');
     }
 
+    public function logout_page()
+    {
+        return view('auth.logout');
+    }
 }

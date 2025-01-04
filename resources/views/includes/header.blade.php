@@ -124,7 +124,7 @@
 
             <!-- Logout Button -->
             @auth
-            <form action="{{ route('login') }}" method="POST" class="inline">
+            <form action="{{ route('logout') }}" method="POST" class="inline">
                 @csrf
                 <button 
                     type="submit" 
@@ -166,7 +166,7 @@
         <!-- Logout Button -->
         @auth
         <div class="flex items-center px-4 py-2">
-            <form action="{{ route('user.logout') }}" method="POST" class="w-full">
+            <form action="{{ route('logout') }}" method="POST" class="w-full">
                 @csrf
                 <button 
                     type="submit" 

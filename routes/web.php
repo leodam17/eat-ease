@@ -24,7 +24,9 @@ Route::post('/signup', [SignupController::class, 'signup'])->name('user.signup.s
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login_auth', [LoginController::class, 'login_auth'])->name('login_post');
-Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout')->middleware('auth');
+// Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout')->middleware('auth');
+Route::get('/logout', [LoginController::class, 'logout_page'])->name('logout.page');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //Route untuk admin
 Route::middleware('auth:admin')->group(function() {
