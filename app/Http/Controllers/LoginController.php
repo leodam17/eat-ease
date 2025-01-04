@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\AdminHomeController;
+use Illuminate\Support\Facades\Log;
 use App\Models\Admin;
 use App\Models\Users; 
 
@@ -25,7 +25,7 @@ class LoginController extends Controller
         $admin = Admin::where('email', $request->email)->first();
         if ($admin && \Hash::check($request->password, $admin->password)) {
             Auth::login($admin);
-            return redirect()->route('admin.home');
+            // return redirect()->route('admin.about');
         }
 
         $user = Users::where('email', $request->email)->first();
@@ -40,17 +40,17 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout();
+        // Logout user
+        Auth::logout();
+
+        // Invalidate session
         $request->session()->invalidate();
+
+        // Regenerate CSRF token
         $request->session()->regenerateToken();
-        
 
-        return redirect()->route('logout.page');
+        // Redirect ke halaman login atau logout
+        return redirect()->route('/login')->with('success', 'Logged out successfully!');
     }
 
-
-    public function logout_page()
-    {
-        return view('admin.logout');
-    }
 }

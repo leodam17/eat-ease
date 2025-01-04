@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SignupController;
@@ -13,17 +12,18 @@ use App\Http\Controllers\RecommendationController;
 
 // Route Signup
 Route::get('/signup', [SignupController::class, 'index'])->name('user.signup');
-Route::post('/signup', [SignupController::class, 'register'])->name('user.signup.store');
+Route::post('/signup', [SignupController::class, 'signup'])->name('user.signup.store');
 
 //Route Login
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login_auth', [LoginController::class, 'login_auth'])->name('login_post');
-Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout')->middleware('auth');
 
 //Route untuk admin
 Route::middleware('auth:admin')->group(function() {
-    Route::get('/home', [AdminHomeController::class, 'index'])->name('admin.home');
-    Route::get('/about', [AdminHomeController::class, 'about'])->name('admin.about');
+    Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
+    Route::get('/about', [HomeController::class, 'about'])->name('admin.about');
     });
 
 //Route untuk user
