@@ -26,7 +26,7 @@ class LoginController extends Controller
     
         // Login sebagai admin
         if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.dashboard');
         }
     
         // Login sebagai user

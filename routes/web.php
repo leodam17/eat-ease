@@ -17,24 +17,17 @@ Route::post('/signup', [SignupController::class, 'signup'])->name('user.signup.s
 
 //Route Login
 Route::get('/', [LoginController::class, 'index'])->name('login');
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/admin/adminleastmenu', [AdminController::class, 'lowDemandMenus'])->name('admin.lowDemandMenus');
-
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login_auth', [LoginController::class, 'login_auth'])->name('login_post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout')->middleware('auth');
 
 //Route untuk admin
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
-    Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
-    Route::get('/about', [HomeController::class, 'adminAbout'])->name('admin.about');
+    // Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
+    // Route::get('/about', [HomeController::class, 'adminAbout'])->name('admin.about');
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/adminleastmenu', [AdminController::class, 'lowDemandMenus'])->name('admin.lowDemandMenus');
+
 });
 
 
