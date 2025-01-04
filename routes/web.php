@@ -2,14 +2,15 @@
 
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SignupController;
-use App\Http\Controllers\RecommendationController;
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // Route Signup
 Route::get('/signup', [SignupController::class, 'index'])->name('user.signup');

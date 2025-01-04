@@ -3,35 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title', 'EatEase')</title>
-
+    
     <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@600&family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/themetoggle.js', 'resources/js/menubutton.js'])
+    @vite('resources/css/app.css')
 </head>
 
 <style>
-    p, h1, h2, h3, span {
+    p, h1, h2, h3, span, button, select, option, ::placeholder {
         font-family: 'Cutive Mono', monospace;
     }
+
 </style>
 
-<body class="flex flex-col min-h-screen">
-    @include('includes.header')
-
-    <main class="flex-grow pt-0">
+<body>
+    <div class="pt-0">
         @yield('content')
-    </main>
-
-    @include('includes.footer')
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
