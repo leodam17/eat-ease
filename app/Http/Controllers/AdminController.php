@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
 
-
-    public function dashboard(){
-
-        $orders = Order::paginate(10);
-        return view('admin.dashboard', compact('orders'));
-
+    public function dashboard() {
+        $totalOrder = DB::table('order')->count();
+        $totalMenu = DB::table('menu')->count(); 
+    
+        $orders = Order::paginate(8); 
+        return view('admin.dashboard', compact('orders', 'totalOrder', 'totalMenu'));
     }
+    
 
     public function lowDemandMenus()
     {

@@ -10,7 +10,7 @@
 
 @if($leastOrderedMenu)
     <div style="border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 16px; max-width: 400px; margin: 16px auto;">
-        <img src="{{ $leastOrderedMenu->gambar }}" alt="{{ $leastOrderedMenu->nama }}" style="width: 100%; border-radius: 8px 8px 0 0;">
+        <img src="{{ asset('img/' . $leastOrderedMenu->gambar) }}" alt="{{ $leastOrderedMenu->nama }}" style="width: 100%; border-radius: 8px 8px 0 0;">
         <div style="padding: 16px;">
             <h3 style="margin: 0 0 8px;">{{ $leastOrderedMenu->nama }}</h3>
             <p style="margin: 0 0 8px; color: #555;">{{ $leastOrderedMenu->deskripsi }}</p>

@@ -4,14 +4,16 @@
     <ul class="space-y-2">
         <li>
             <a href="{{ route('admin.dashboard') }}"
-                class="block px-4 py-2 rounded hover:bg-gray-700
-            ">Dashboard</a>
+                class="block px-4 py-2 rounded hover:bg-gray-700 
+                {{ request()->routeIs('admin.dashboard') ? 'bg-gray-700 text-white' : '' }}
+                ">Dashboard</a>
         </li>
         <li>
             <a href="{{ route('admin.lowDemandMenus') }}"
-                class="block px-4 py-2 rounded hover:bg-gray-700
-            ">Low-Demand Menu</a>
-        </li>
+                class="block px-4 py-2 rounded hover:bg-gray-700 
+                {{ request()->routeIs('admin.lowDemandMenus') ? 'bg-gray-700 text-white' : '' }}
+                ">Low-Demand Menu</a>
+        </li>        
         <li>
             {{-- <a href="{{ route('admin.event_categories') }}"
                 class="block px-4 py-2 rounded hover:bg-gray-700
