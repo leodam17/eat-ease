@@ -69,7 +69,7 @@
 
             <p class="text-center mt-4" style="color: #815854;">
                 New to EatEase? 
-                <a href="{{ route('user.signup') }}" style="color: #A0643C; text-decoration: underline;">Register here!</a>
+                <a href="{{ route('auth.signup') }}" style="color: #A0643C; text-decoration: underline;">Register here!</a>
             </p>
         </form>
     </div>

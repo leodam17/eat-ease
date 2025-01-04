@@ -17,8 +17,8 @@ Route::get('/admin/adminleastmenu', [AdminController::class, 'lowDemandMenus'])-
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 // Route Signup
-Route::get('/signup', [SignupController::class, 'index'])->name('user.signup');
-Route::post('/signup', [SignupController::class, 'signup'])->name('user.signup.store');
+Route::get('/signup', [SignupController::class, 'index'])->name('auth.signup');
+Route::post('/signup', [SignupController::class, 'signup'])->name('auth.signup.store');
 
 //Route Login
 Route::get('/', [LoginController::class, 'index'])->name('login');

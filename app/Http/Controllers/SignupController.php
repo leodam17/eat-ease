@@ -13,7 +13,7 @@ class SignupController extends Controller
      */
     public function index()
     {
-        return view('user.signup'); // Ensure this blade file exists at resources/views/user/signup.blade.php
+        return view('auth.signup'); // Ensure this blade file exists at resources/views/user/signup.blade.php
     }
 
     /**
