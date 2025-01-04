@@ -139,7 +139,7 @@ class CartController extends Controller
             // Save each item as a separate order entry
             for ($i = 0; $i < $quantity; $i++) {
                 Order::create([
-                    'user_id' => 1, // Replace with auth()->id() when authentication is implemented
+                    'user_id' => auth()->id(), // Replace with auth()->id() when authentication is implemented
                     'nama_pesanan' => $menu->nama, // Corresponding menu name
                     'status_pesanan' => 0, // Order status: 0 means active (not yet processed)
                 ]);

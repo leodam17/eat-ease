@@ -7,9 +7,7 @@
 
     <title>@yield('title', 'EatEase')</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&family=Dancing+Script:wght@600&family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
@@ -19,8 +17,13 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/themetoggle.js', 'resources/js/menubutton.js'])
 </head>
+<style>
+    p, h1, h2, h3, span {
+        font-family: 'Cutive Mono', monospace;
+    }
 
-<body class="flex flex-col min-h-screen font-poppins">
+</style>
+<body class="flex flex-col min-h-screen">
     @include('includes.header')
 
     <main class="flex-grow pt-0">

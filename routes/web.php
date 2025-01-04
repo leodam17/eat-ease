@@ -41,6 +41,3 @@ Route::middleware('auth:web')->group(function() {
         Route::post('/cart/order', [CartController::class, 'storeOrder'])->name('cart.storeOrder');
         });
 
-// Route Recommendation
-Route::get('/recommendations/{userId}', [RecommendationController::class, 'recommend']);
-
