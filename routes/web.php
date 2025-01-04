@@ -23,8 +23,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout')-
 
 //Route untuk admin
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
-    // Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
-    // Route::get('/about', [HomeController::class, 'adminAbout'])->name('admin.about');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/adminleastmenu', [AdminController::class, 'lowDemandMenus'])->name('admin.lowDemandMenus');
 
