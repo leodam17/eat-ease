@@ -55,7 +55,9 @@
                         style="font-size: 1.1rem;">
                     <option value="" disabled selected>Select Preference</option>
                     <option value="normal" class="text-gray-600">Normal</option>
-                    <option value="vege/vegan" class="text-gray-600">Vege/Vegan</option>
+                    <option value="vegan" class="text-gray-600">Vege/Vegan</option>
+                    <option value="spicy" class="text-gray-600">Spicy</option>
+                    <option value="dessert" class="text-gray-600">Dessert</option>
                 </select>
             </div>
             
@@ -82,7 +84,7 @@
                         <path d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/>
                     </svg>
                 </span>
-                <input type="password" name="password" id="password" placeholder="Password" 
+                <input type="password" name="password" id="password" placeholder="Password (6 characters)" 
                        class="w-full bg-white bg-opacity-15 text-white border-none rounded-full py-3 px-10 placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 shadow-lg"
                        style="font-size: 1.1rem;" required>
             </div>

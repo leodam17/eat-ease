@@ -26,7 +26,7 @@ class SignupController extends Controller
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email', // Pastikan email unik di tabel users
             'password' => 'required|string|min:6|confirmed', // Pastikan password dikonfirmasi
-            'preferensi' => 'nullable|string|in:normal,vege/vegan', // Validasi preferensi
+            'preferensi' => 'nullable|string|in:normal,vegan,spicy,dessert', // Validasi preferensi
             'alergi' => 'nullable|string|in:none,seafood,peanut,tofu,milk,hazelnut',
         ]);
 
