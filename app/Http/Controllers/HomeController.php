@@ -144,24 +144,4 @@ class HomeController extends Controller
     {
         return view('user.menu');
     }
-
-
-    public function adminIndex()
-    {
-        $loggedInAdmin = Auth::user(); // Dapatkan data admin yang login
-
-        // Jika user tidak ditemukan, beri respons error
-        if (!$loggedInAdmin) {
-            return response()->json(['error' => 'Admin not found'], 404);
-        }
-
-        return view('admin.dashboard', [
-            'admin' => $loggedInAdmin->nama,
-        ]);
-    }
-
-    public function adminAbout()
-    {
-        return view('admin.about');
-    }
 }
