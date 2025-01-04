@@ -21,10 +21,11 @@ Route::post('/login_auth', [LoginController::class, 'login_auth'])->name('login_
 Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout')->middleware('auth');
 
 //Route untuk admin
-Route::middleware('auth:admin')->group(function() {
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
     Route::get('/about', [HomeController::class, 'adminAbout'])->name('admin.about');
-    });
+});
+
 
 //Route untuk user
 Route::middleware('auth:web')->group(function() {

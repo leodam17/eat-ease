@@ -19,6 +19,13 @@
 <!-- Hero Section -->
 <div class="relative bg-cover bg-center h-screen" style="background-image: url('img/background.jpg');">
     <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    
+    <div class="absolute inset-0 flex items-center justify-center text-center text-white">
+        <div>
+            <h1 class="text-5xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">Taste the Magic of Every Bite</h1>
+            <p class="text-xl">Step into a world where every bite tells a story, and every dish is a delight.</p>
+        </div>
+    </div>
 </div>
 
 
@@ -65,7 +72,7 @@
     <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
         <!-- Left Side Image (Posisi foto di atas pada tampilan mobile) -->
         <div class="w-full mb-6 md:mb-0 md:w-1/3 flex justify-center">
-            <img src="{{ asset('img/about.jpg') }}" alt="About Us Image" class="w-full h-auto max-w-[300px] rounded-lg shadow-lg object-cover">
+            <img src="{{ asset('img/about.webp') }}" alt="About Us Image" class="w-full h-auto max-w-[300px] rounded-lg shadow-lg object-cover">
         </div>
 
         <!-- Right Side Text -->

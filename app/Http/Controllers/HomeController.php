@@ -148,9 +148,10 @@ class HomeController extends Controller
 
     public function adminIndex()
     {
-        // $loggedInAdmin = Auth::user(); // Dapatkan data admin yang login
-        $adminId = 2;
-        $loggedInAdmin = \DB::table('admin')->where('id', $adminId)->first();
+        $loggedInAdmin = Auth::user(); // Dapatkan data admin yang login
+        // $loggedInAdmin = \DB::table('admin')->where('id', $adminId)->first();
+
+        $menus = Menu::orderBy('popularitas', 'desc')->get();
 
         // Jika user tidak ditemukan, beri respons error
         if (!$loggedInAdmin) {
@@ -158,6 +159,7 @@ class HomeController extends Controller
         }
 
         return view('admin.home', [
+            'menus' => $menus,
             'admin' => $loggedInAdmin->nama,
         ]);
     }
