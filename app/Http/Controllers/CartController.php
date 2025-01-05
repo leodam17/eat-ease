@@ -151,5 +151,12 @@ class CartController extends Controller
     
         // Redirect to the home page with a success message
         return redirect('/home')->with('success', 'Thank you for your payment!');
-    }       
+    }
+    
+    public function orderHistory() {
+        $userId = auth()->id(); // Get the logged-in user's ID
+        $orderHistory = Order::where('user_id', $userId)->get();
+    
+        return view('user.orderHistory', compact('orderHistory'));
+    }
 }

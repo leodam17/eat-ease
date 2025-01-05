@@ -155,6 +155,7 @@
             <a href="{{ url('/menu') }}" class="inline-block bg-[#d6a670] hover:bg-[#c89550] text-white font-medium py-1.5 px-3 rounded dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] mb-4 text-sm">
                 Back to Menu
             </a>
+            
 
             <div class="overflow-x-auto">
             <!-- Cart Table -->

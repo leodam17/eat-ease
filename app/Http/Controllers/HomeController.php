@@ -166,4 +166,17 @@ class HomeController extends Controller
     {
         return view('admin.about');
     }
+
+    public function orderHistory()
+    {
+        $userId = auth()->id(); // Fetch logged-in user ID
+        
+        // Eagerly load the 'menu' relationship to avoid N+1 query problem
+        $orders = Order::with('menu') // Ensure 'menu' relationship is loaded
+                        ->where('user_id', $userId)
+                        ->orderBy('created_at', 'desc')
+                        ->get();
+    
+        return view('user.orderHistory', compact('orders'));
+    }    
 }
