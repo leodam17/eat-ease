@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Order;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -12,9 +13,19 @@ class AdminController extends Controller
     public function dashboard() {
         $totalOrder = DB::table('order')->count();
         $totalMenu = DB::table('menu')->count(); 
-    
+        $loggedInAdmin = Auth::user(); // Dapatkan data admin yang login
+
+        // Jika user tidak ditemukan, beri respons error
+        if (!$loggedInAdmin) {
+            return response()->json(['error' => 'Admin not found'], 404);
+        }
+
         $orders = Order::paginate(8); 
-        return view('admin.dashboard', compact('orders', 'totalOrder', 'totalMenu'));
+
+        return view('admin.dashboard', compact('orders', 'totalOrder', 'totalMenu'), [
+            'admin' => $loggedInAdmin->nama,
+            'email' => $loggedInAdmin->email,
+        ]);
     }
     
 
@@ -22,13 +33,22 @@ class AdminController extends Controller
     {
         $menus = Menu::all(); // Ambil semua menu dari database
         $leastOrderedMenu = $this->swarmOptimization($menus); // Panggil metode swarmOptimization untuk mendapatkan menu dengan pemesanan paling rendah
-        
+        $loggedInAdmin = Auth::user(); // Dapatkan data admin yang login
+
+        // Jika user tidak ditemukan, beri respons error
+        if (!$loggedInAdmin) {
+            return response()->json(['error' => 'Admin not found'], 404);
+        }
+
         // Cek apakah $leastOrderedMenu adalah objek yang valid
         if ($leastOrderedMenu === null) {
-            return view('admin.adminleastmenu', ['error' => 'Tidak ada menu dengan pemesanan terendah.']);
+            return view('admin.adminleastmenu', ['error' => 'Tidak ada menu dengan pemesanan terendah.',]);
         }
     
-        return view('admin.adminleastmenu', compact('leastOrderedMenu')); // Kirim $leastOrderedMenu ke view
+        return view('admin.adminleastmenu', compact('leastOrderedMenu'), [
+            'admin' => $loggedInAdmin->nama,
+            'email' => $loggedInAdmin->email,
+        ]); // Kirim $leastOrderedMenu ke view
     }
     
     

@@ -13,7 +13,7 @@
                 <span class="text-xl font-bold">EatEase</span>
                 <div class="border-l border-white-500 h-6 mx-3"></div>
                 <span class="text-white-400 font-normal">
-                    Welcome, Admin
+                    Welcome, {{ $admin }}
                 </span>
             </div>
         </div>

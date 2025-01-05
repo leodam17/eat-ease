@@ -21,10 +21,8 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         // Periksa apakah admin atau user
-        $admin = Admin::where('email', $request->email)->first();
-        if ($admin && \Hash::check($request->password, $admin->password)) {
-            Auth::login($admin);
-            return redirect()->route('admin.home')->with('success', 'Welcome, Admin! You have successfully logged in.');
+        if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
+            return redirect()->route('admin.dashboard');
         }
 
         $user = Users::where('email', $request->email)->first();

@@ -67,6 +67,11 @@
                 Login
             </button>
 
+            <p class="text-center mt-4" style="color: #815854;">
+                Back to login? 
+                <a href="{{ route('login') }}" style="color: #A0643C; text-decoration: underline;">Login</a>
+            </p>
+
         </form>
     </div>
 </div>
