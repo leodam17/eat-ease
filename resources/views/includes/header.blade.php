@@ -109,6 +109,10 @@
                class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('menu') ? 'underline' : '' }}">
                 Menu
             </a>
+            <a href="{{ route('user.order_history') }}" 
+               class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('menu') ? 'underline' : '' }}">
+                Order History
+            </a>
             <a href="{{ route('user.cart') }}" 
                class="text-sm font-semibold leading-6 text-white transition duration-300">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">

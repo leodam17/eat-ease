@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
@@ -49,3 +50,4 @@ Route::middleware('auth:web')->group(function() {
     Route::post('/cart/order', [CartController::class, 'storeOrder'])->name('cart.storeOrder');
     });
 
+    Route::get('/order-history', [OrderController::class, 'orderHistory'])->name('user.order_history');
