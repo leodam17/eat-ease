@@ -15,7 +15,7 @@
 }
 
 .cart-table th, 
-.cart-table td {
+.cart-table td {    
     text-align: center;
     padding: 1rem;
     border-bottom: 1px solid #d1c6b1;
@@ -102,7 +102,7 @@
 </style>
 
 <!-- Header Section with Background Image -->
-<div class="relative w-full h-[400px] bg-cover bg-center" style="background-image: url('{{ asset('img/history.webp') }}');">
+<div class="relative w-full h-[300px] bg-cover bg-center" style="background-image: url('{{ asset('img/history.webp') }}');">
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center">
         <!-- Breadcrumb -->
@@ -116,7 +116,7 @@
     </div>
 </div>
 
-<div class="min-h-screen bg-[#e7e3d8] dark:bg-[#1e1a14] py-12 mt-10">
+<div class="min-h-screen bg-[#e7e3d8] dark:bg-[#1e1a14] py-12">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
         @if(count($groupedOrders) > 0)

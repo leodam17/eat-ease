@@ -117,22 +117,23 @@ class AdminController extends Controller
         return $globalBest; // Menu dengan pemesanan paling rendah
     }
     
-    public function popularMenus() {
-        // Fetch menus with the count of orders
+    public function popularMenus()
+    {
         $popularMenus = DB::table('order')
             ->select('nama_pesanan', DB::raw('count(*) as total_orders'))
             ->groupBy('nama_pesanan')
             ->orderBy('total_orders', 'desc')
-            ->get();
+            ->paginate(8); // memberikan paginasi 8 item per halaman
     
-        return view('admin.popularMenus', compact('popularMenus'));
-    }  
-
-    public function userOrderHistory($userId)
-    {
-        $orders = Order::where('user_id', $userId)->orderBy('created_at', 'desc')->get();
-
-        return view('admin.userOrderHistory', compact('orders'));
-    }
-
+        $loggedInAdmin = Auth::user();
+    
+        if (!$loggedInAdmin) {
+            return redirect()->route('login')->withErrors('Please log in.');
+        }
+    
+        return view('admin.popularMenus', compact('popularMenus'), [
+            'admin' => $loggedInAdmin->nama,
+            'email' => $loggedInAdmin->email,
+        ]);
+    }     
 }

@@ -29,6 +29,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/adminleastmenu', [AdminController::class, 'lowDemandMenus'])->name('admin.lowDemandMenus');
+    Route::get('/admin/popular-menus', [AdminController::class, 'popularMenus'])->name('admin.popularMenus');
 
 });
 
