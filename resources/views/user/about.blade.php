@@ -3,26 +3,24 @@
 @section('title', 'EatEase | About Us')
 
 @section('content')
-<!-- Header Section with Background Image -->
+<!-- Header -->
 <div class="relative w-full h-[300px] bg-cover bg-center" style="background-image: url('{{ asset('img/about.webp') }}');">
-    <!-- Overlay -->
     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center">
-        <!-- Breadcrumb -->
         <div class="text-white text-sm mb-4">
             <a href="/home" class="hover:underline">Home</a>
             <span class="mx-2">></span>
             <span>About</span>
         </div>
-        <!-- Title -->
         <h1 class="text-4xl font-bold text-white">Our Story</h1>
     </div>
 </div>
 
-<!-- Content Section -->
+
+<!-- Why We Created EatEase -->
 <div class="bg-[#e7e3d8] dark:bg-[#1e1a14] text-[#4a3b2f] dark:text-[#e7d7c4] py-10">
     <h2 class="text-2xl font-bold text-center mb-6 text-[#4a3b2f] dark:text-[#e7d7c4]">Why We Created EatEase</h2>
+
     <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <!-- Text Content -->
         <div class="text-center md:text-left">
             <p class="text-sm text-[#4a3b2f] dark:text-[#d7d4cc] mb-8 leading-relaxed">
                 At EatEase, we understand the challenge of choosing the perfect meal. It&apos;s a dilemma we&apos;ve all faced — standing in front of a menu, feeling overwhelmed by the countless options, unsure of what to pick, and wondering if it&apos;s the right choice. It&apos;s not just about satisfying hunger; it&apos;s about the joy of eating, the pleasure of discovering new flavors, and the delight of finding something that feels just right.
@@ -34,14 +32,14 @@
                 EatEase isn&apos;t just about food; it&apos;s about making your dining experience smoother, faster, and more enjoyable. Whether you&apos;re craving something familiar or exploring new flavors, EatEase will guide you to the perfect meal, every time.
             </p>
         </div>
-        <!-- Image Content -->
         <div class="flex justify-center">
             <img src="{{ asset('img/people.webp') }}" alt="Why We Created EatEase" class="rounded-lg shadow-md w-full max-w-md">
         </div>
     </div>
 </div>
 
-<!-- Why Choose Us Section -->
+
+<!-- Why Choose Us -->
 <div class="bg-[#ECE8D8] dark:bg-[#3d3025] py-10">
     <h2 class="text-2xl font-bold text-center mb-6 text-[#4a3b2f] dark:text-[#e7d7c4]">Why Choose Us</h2>
     <p class="text-center text-sm text-[#4a3b2f] dark:text-[#d7d4cc] mb-10">We make dining easy and enjoyable.</p>
@@ -63,15 +61,14 @@
 </div>
 
 
-<!-- Frequently Asked Questions Section -->
+<!-- Frequently Ask Questions -->
 <div class="bg-[#e7e3d8] dark:bg-[#1e1a14] py-10">
     <h2 class="text-2xl font-bold text-center mb-6 text-[#4a3b2f] dark:text-[#e7d7c4]">Frequently Asked Questions</h2>
+
     <div class="container mx-auto px-6 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <!-- Image Content -->
         <div class="flex justify-center">
             <img src="{{ asset('img/faq.webp') }}" alt="Frequently Asked Questions" class="rounded-lg shadow-md w-full max-w-md">
         </div>
-        <!-- FAQ Content -->
         <div class="space-y-4">
             <div class="bg-[#f7f4ef] dark:bg-[#2c2720] p-4 rounded-lg shadow-md">
                 <button class="w-full text-left text-[#4a3b2f] dark:text-[#e7d7c4] font-semibold flex items-center justify-between" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">

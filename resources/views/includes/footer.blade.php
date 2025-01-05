@@ -17,7 +17,6 @@
                 <div>
                     <p class="font-semibold text-[#e0d1b3] dark:text-[#f3f2ed]">Contact Us</p>
                     <div class="mt-4 space-y-4">
-                        <!-- Contact Item -->
                         <div class="relative flex items-center">
                             <div class="bg-[#b79b6b] dark:bg-[#8a6d4d] p-2 rounded-l-md text-white flex items-center justify-center z-10">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -28,7 +27,6 @@
                                 <span>0804-1-573348</span>
                             </div>
                         </div>
-                        <!-- Contact Item -->
                         <div class="relative flex items-center">
                             <div class="bg-[#b79b6b] dark:bg-[#8a6d4d] p-2 rounded-l-md text-white flex items-center justify-center z-10">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">

@@ -1,89 +1,77 @@
 <style>
-/* Container Toggle */
 .toggle-container {
     display: flex;
     align-items: center;
     position: relative;
-    width: 60px; /* Lebar toggle */
-    height: 30px; /* Tinggi toggle */
-    background-color: #d2c3af; /* Warna background default */
-    border-radius: 15px; /* Membulat */
+    width: 60px;
+    height: 30px;
+    background-color: #d2c3af;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Posisi tombol toggle */
 #theme-icon {
     position: absolute;
     width: 26px;
     height: 26px;
-    background-color: white; /* Warna tombol */
+    background-color: white;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    left: 2px; /* Posisi awal (light mode) */
+    left: 2px;
 }
 
-/* Background toggle saat dark mode */
 .toggle-container.dark {
-    background-color: #5c5043; /* Warna toggle saat dark mode */
+    background-color: #5c5043;
 }
 
-/* Posisi tombol saat dark mode */
 .toggle-container.dark #theme-icon {
-    transform: translateX(30px); /* Geser ke kanan */
+    transform: translateX(30px);
 }
 
-/* Ikon SVG */
 .toggle-icon svg {
     width: 16px;
     height: 16px;
-    fill: #5c5043; /* Warna ikon untuk light mode */
+    fill: #5c5043;
     transition: fill 0.3s ease;
 }
 
-/* Dark mode ikon warna */
 .toggle-container.dark .toggle-icon svg {
-    fill: #d2c3af; /* Warna ikon untuk dark mode */
+    fill: #d2c3af;
 }
 
-/* Posisi tombol toggle */
 #mobile-theme-icon {
     position: absolute;
     width: 26px;
     height: 26px;
-    background-color: white; /* Warna tombol */
+    background-color: white;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    left: 2px; /* Posisi awal (light mode) */
+    left: 2px;
 }
 
-/* Posisi tombol saat dark mode */
 .toggle-container.dark #theme-icon,
 .toggle-container.dark #mobile-theme-icon {
-    transform: translateX(30px); /* Geser ke kanan */
+    transform: translateX(30px);
 }
-
 </style>
 
 
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-10 transition-colors duration-300 font-poppins">
     <div class="container mx-auto px-4 flex justify-between items-center h-20">
-        <!-- Title -->
         <a id="navbar-title" href="{{ auth()->check() && auth()->user() instanceof \App\Models\Admin ? route('admin.home') : route('user.home') }}" 
            class="text-3xl font-bold text-white transition-colors duration-300">EatEase</a>
 
-        <!-- Mobile Menu Button -->
         <button id="mobile-menu-button" type="button" class="text-black dark:text-white hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white md:hidden">
-            <span class="sr-only">Open Menu</span>
 
             <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 text-black dark:text-white hover:text-blue-600">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -94,7 +82,7 @@
             </svg>
         </button>
 
-        <!-- Navigation Links (Desktop) -->
+        <!-- Desktop -->
         <div class="hidden md:flex items-center space-x-6">
             <a href="{{ auth()->check() && auth()->user() instanceof \App\Models\Admin ? route('admin.home') : route('user.home') }}" 
                class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('home') ? 'underline' : '' }}">
@@ -121,12 +109,10 @@
             </a>
             @endif
 
-            <!-- Theme Toggle -->
             <div id="theme-toggle" class="toggle-container">
                 <span id="theme-icon"></span>
             </div>
 
-            <!-- Logout Button -->
             @auth
             <form action="{{ route('logout') }}" method="POST" class="inline">
                 @csrf
@@ -142,9 +128,8 @@
         </div>
     </div>
 
-    <!-- Mobile Menu -->
+    <!-- Mobile -->
     <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 right-0 bg-white shadow-lg">
-        <!-- Menu Links -->
         <div class="flex flex-col items-start">
             <a href="{{ auth()->check() && auth()->user() instanceof \App\Models\Admin ? route('admin.home') : route('user.home') }}" 
             class="block w-full px-4 py-2 text-sm font-semibold leading-6">
@@ -162,12 +147,10 @@
             @endif
         </div>
 
-        <!-- Theme Toggle untuk Mobile -->
         <div id="mobile-theme-toggle" class="toggle-container" style="margin-left: 13px; margin-bottom: 10px;">
             <span id="mobile-theme-icon"></span>
         </div>
 
-        <!-- Logout Button -->
         @auth
         <div class="flex items-center px-4 py-2">
             <form action="{{ route('logout') }}" method="POST" class="w-full">
@@ -186,14 +169,13 @@
 </nav>
 
 
-
 <script>
 function handleNavbarBackground() {
     const navbar = document.getElementById('navbar');
     const navbarTitle = document.getElementById('navbar-title');
     const themeToggle = document.getElementById('theme-toggle');
     const logoutButton = document.getElementById('logout-button');
-    const navLinks = document.querySelectorAll('#navbar a'); // Menargetkan semua tautan di navbar
+    const navLinks = document.querySelectorAll('#navbar a');
 
     if (window.scrollY > 0) {
         navbar.classList.add('shadow');
@@ -206,7 +188,7 @@ function handleNavbarBackground() {
             logoutButton.style.color = '#e7d7c4';
             logoutButton.style.borderColor = '#e7d7c4';
             navLinks.forEach(link => {
-                link.style.color = '#e7d7c4'; // Tautan warna terang pada dark mode
+                link.style.color = '#e7d7c4';
             });
         } else {
             navbar.classList.add('bg-[#e7d7c4]');
@@ -216,7 +198,7 @@ function handleNavbarBackground() {
             logoutButton.style.color = '#4a3b2f';
             logoutButton.style.borderColor = '#4a3b2f';
             navLinks.forEach(link => {
-                link.style.color = '#4a3b2f'; // Tautan warna gelap pada light mode
+                link.style.color = '#4a3b2f';
             });
         }
     } else {
@@ -227,7 +209,7 @@ function handleNavbarBackground() {
         logoutButton.style.color = '';
         logoutButton.style.borderColor = '';
         navLinks.forEach(link => {
-            link.style.color = ''; // Setel warna tautan ke default saat navbar transparan
+            link.style.color = '';
         });
     }
 }
