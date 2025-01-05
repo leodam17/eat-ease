@@ -35,12 +35,21 @@ class AdminController extends Controller
     
         // Gunakan Simulated Annealing untuk menemukan menu dengan total pemesanan terendah
         $leastOrderedMenu = $this->simulatedAnnealing($menus);
+        $loggedInAdmin = Auth::user(); // Dapatkan data admin yang login
+
+        // Jika user tidak ditemukan, beri respons error
+        if (!$loggedInAdmin) {
+            return response()->json(['error' => 'Admin not found'], 404);
+        }
     
         if ($leastOrderedMenu === null) {
             return view('admin.adminleastmenu', ['error' => 'Tidak ada menu dengan pemesanan terendah.',]);
         }
     
-        return view('admin.adminleastmenu', compact('leastOrderedMenu'));
+        return view('admin.adminleastmenu', compact('leastOrderedMenu'), [
+            'admin' => $loggedInAdmin->nama,
+            'email' => $loggedInAdmin->email,
+        ]);
     }
     
 
