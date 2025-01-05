@@ -18,19 +18,17 @@ class LoginController extends Controller
     public function login_auth(Request $request)
     {
         // Validasi input login
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
-    
-        // Login sebagai admin
+        $credentials = $request->only('email', 'password');
+
+        // Periksa apakah admin atau user
         if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
             return redirect()->route('admin.dashboard');
         }
-    
-        // Login sebagai user
-        if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
-            return redirect()->route('user.home');
+
+        $user = Users::where('email', $request->email)->first();
+        if ($user && \Hash::check($request->password, $user->password)) {
+            Auth::login($user);
+            return redirect()->route('user.home')->with('success', 'Welcome back! You have successfully logged in.');
         }
 
         return back()->with('error', 'Invalid credentials');

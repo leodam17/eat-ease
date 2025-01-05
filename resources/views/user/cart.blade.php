@@ -155,6 +155,7 @@
             <a href="{{ url('/menu') }}" class="inline-block bg-[#d6a670] hover:bg-[#c89550] text-white font-medium py-1.5 px-3 rounded dark:bg-[#9a7f48] dark:hover:bg-[#7c6539] mb-4 text-sm">
                 Back to Menu
             </a>
+            
 
             <div class="overflow-x-auto">
             <!-- Cart Table -->
@@ -240,8 +241,10 @@
             <!-- Empty Cart Message -->
             <div class="text-center py-10">
                 <h2 class="text-2xl font-bold text-[#4a3b2f] dark:text-[#e7e3d8]">Oops, Your cart is empty!</h2>
-                <p class="text-lg text-[#6b4f3b] dark:text-[#d1c7b0] mt-4">
+                <p class="text-base text-[#6b4f3b] dark:text-[#d1c7b0] mt-4">
+                    <em>
                     "It's as empty as a coffee cup in the morning! Fill it up with some delicious bites 🍔 and refreshing sips ☕!"
+                    </em>
                 </p>
                 <a href="{{ url('/menu') }}" class="mt-6 inline-block bg-[#d6a670] hover:bg-[#c89550] text-white font-bold py-2 px-4 rounded dark:bg-[#9a7f48] dark:hover:bg-[#7c6539]">
                     Explore Menu 🍽️

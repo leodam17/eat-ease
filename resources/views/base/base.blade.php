@@ -19,7 +19,7 @@
 </head>
 
 <style>
-    p, h1, h2, h3, span {
+    p, h1, h2, h3, span, td {
         font-family: 'Cutive Mono', monospace;
     }
 </style>

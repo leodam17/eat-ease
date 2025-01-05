@@ -26,4 +26,11 @@ class Order extends Model
     {
         return $this->hasOne(RiwayatUser::class, 'id_pesanan');
     }
+
+    // Relationship with the Menu model
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
+    
 }
