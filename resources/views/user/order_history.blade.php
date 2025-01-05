@@ -116,13 +116,12 @@
     </div>
 </div>
 
-<div class="min-h-screen bg-[#e7e3d8] dark:bg-[#1e1a14] py-12">
+<div class="min-h-screen bg-[#e7e3d8] dark:bg-[#1e1a14] py-5">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
         @if(count($groupedOrders) > 0)
             <!-- Grouped Order History Table -->
             @foreach ($groupedOrders as $date => $orders)
-                <div class="table-header text-primary">{{ $date }}</div>
                 <div class="overflow-x-auto">
                     <table class="cart-table w-full text-center border-collapse">
                         <thead>
