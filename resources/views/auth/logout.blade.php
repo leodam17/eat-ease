@@ -1,14 +1,24 @@
 @extends('base.base2')
 
-@section('title', 'Login | EatEase')
+@section('title', 'Login Again | EatEase')
 
 @section('content')
 <div class="min-h-screen flex items-center justify-center" 
-     style="background: url('img/login.webp') no-repeat center center fixed; background-size: cover;">
+     style="background: url('img/logout.webp') no-repeat center center fixed; background-size: cover;">
     <div class="w-full max-w-md p-8 rounded-xl shadow-lg relative" 
-         style="background: rgba(255, 245, 230, 0.9); backdrop-filter: blur(8px); border: 1px solid #E7D8C6;">
-        <h2 class="text-2xl font-bold text-center mb-4" style="color: #815854;">Welcome Back</h2>
-        <p class="text-center mb-6" style="color: #A18979;">Just a few details and you&apos;re in!</p>
+         style="background: rgba(255, 240, 220, 0.9); backdrop-filter: blur(8px); border: 1px solid #D8C3AE;">
+        <h2 class="text-2xl font-bold text-center mb-4" style="color: #6B4226;">Logged out successfully!</h2>
+        <p class="text-center mb-6" style="color: #9C6F53;"><em>Please login again to access your account</em></p>
+
+        @if($errors->has('error'))
+            <div id="error-alert" class="bg-red-500 text-white px-4 py-3 rounded-md mb-4 text-center">
+                <div class="flex justify-between items-center">
+                    <span>{{ $errors->first('error') }}</span>
+                    <button onclick="document.getElementById('error-alert').style.display='none'" 
+                            class="text-white hover:text-red-300 font-bold">&times;</button>
+                </div>
+            </div>
+        @endif
 
         <form id="login-form" action="{{ route('login_post') }}" method="POST" class="space-y-4">
             @csrf
@@ -19,7 +29,10 @@
                 </svg>
                 <input type="text" name="email" id="email" placeholder="Email"
                        class="w-full border rounded-lg py-3 px-12 focus:outline-none focus:ring-2"
-                       style="background-color: #FFF7EC; border: 1px solid #D3BAA4; color: #6F4E37; transition: all 0.3s ease;" required>
+                       style="background-color: #F7E3D0; border: 1px solid #D8BBA5; color: #6B4226; transition: all 0.3s ease;" required>
+                @error('email')
+                    <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="relative flex items-center">
@@ -29,7 +42,7 @@
                 </svg>
                 <input type="password" name="password" id="password" placeholder="Password"
                        class="w-full border rounded-lg py-3 px-12 focus:outline-none focus:ring-2"
-                       style="background-color: #FFF7EC; border: 1px solid #D3BAA4; color: #6F4E37; transition: all 0.3s ease;" required>
+                       style="background-color: #F7E3D0; border: 1px solid #D8BBA5; color: #6B4226; transition: all 0.3s ease;" required>
             </div>
 
             <div class="relative flex items-center">
@@ -39,22 +52,21 @@
                 </svg>
                 <select name="role" id="role" 
                         class="w-full border rounded-lg py-3 px-12 focus:outline-none focus:ring-2"
-                        style="background-color: #FFF7EC; border: 1px solid #D3BAA4; color: #6F4E37; transition: all 0.3s ease;" required>
+                        style="background-color: #F7E3D0; border: 1px solid #D8BBA5; color: #6B4226; transition: all 0.3s ease;" required>
                     <option value="" disabled selected>Select Role</option>
                     <option value="user">User</option>
                     <option value="admin">Admin</option>
                 </select>
+                @error('role')
+                    <div class="text-red-500 text-xs mt-1">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit" 
-                    class="w-full py-3 rounded-lg font-semibold bg-[#A0643C] text-white hover:bg-[#8C4F30] transition-all duration-300">
+                    class="w-full py-3 rounded-lg font-semibold bg-[#9C6F53] text-white hover:bg-[#815844] transition-all duration-300">
                 Login
             </button>
 
-            <p class="text-center mt-4" style="color: #815854;">
-                New to EatEase? 
-                <a href="{{ route('auth.signup') }}" style="color: #A0643C; text-decoration: underline;">Register here!</a>
-            </p>
         </form>
     </div>
 </div>

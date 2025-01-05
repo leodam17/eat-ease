@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
@@ -17,14 +18,16 @@ Route::get('/admin/adminleastmenu', [AdminController::class, 'lowDemandMenus'])-
 Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 // Route Signup
-Route::get('/signup', [SignupController::class, 'index'])->name('user.signup');
-Route::post('/signup', [SignupController::class, 'signup'])->name('user.signup.store');
+Route::get('/signup', [SignupController::class, 'index'])->name('auth.signup');
+Route::post('/signup', [SignupController::class, 'signup'])->name('auth.signup.store');
 
 //Route Login
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login_auth', [LoginController::class, 'login_auth'])->name('login_post');
-Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout')->middleware('auth');
+// Route::post('/logout', [LoginController::class, 'logout'])->name('user.logout')->middleware('auth');
+Route::get('/logout', [LoginController::class, 'logout_page'])->name('logout.page');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //Route untuk admin
 Route::middleware('auth:admin')->group(function() {
@@ -51,3 +54,4 @@ Route::middleware('auth:web')->group(function() {
     Route::post('/cart/order', [CartController::class, 'storeOrder'])->name('cart.storeOrder');
     });
 
+    Route::get('/order-history', [OrderController::class, 'orderHistory'])->name('user.order_history');
