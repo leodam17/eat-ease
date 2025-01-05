@@ -5,8 +5,8 @@
     <div class="flex items-center space-x-3 p-4 mb-8 border-b border-gray-700">
     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" class="mr-1"><path fill="currentColor" d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m4 8v-6.4q.625.2 1.225.425t1.175.525q.75.375 1.175 1.088T20 17.2V20zm-6-3.5v-3.35q.5-.075 1-.112T12 13t1 .038t1 .112v3.35zM4 20v-2.8q0-.85.425-1.562T5.6 14.55q.575-.3 1.175-.525T8 13.6V20z"/></svg>
         <div>
-            <h3 class="text-lg font-semibold text-gray-100">{{ $admin }}</h3>
-            <p class="text-sm text-gray-400">{{ $email }}</p>
+            {{-- <h3 class="text-lg font-semibold text-gray-100">{{ $admin }}</h3>
+            <p class="text-sm text-gray-400">{{ $email }}</p> --}}
         </div>
     </div>
     
@@ -30,7 +30,19 @@
                 </svg>
                 <div class="ml-3">Low-Demand Menu</div>
             </a>
-        </li>        
+        </li>  
+        {{-- list menu --}}
+        <li>
+            <a href="{{ route('admin.menus') }}"
+                class="flex items-center px-4 py-2 rounded hover:bg-gray-700 
+                {{ request()->routeIs('admin.menus') ? 'bg-gray-700 text-white' : '' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M7 18h10v-2H7v2m0-4h10v-2H7v2m0-4h10V8H7v2M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21H5Z"/>
+                </svg>
+                <div class="ml-3">List Menu</div>
+            </a>
+        </li>
+              
         <li>
             {{-- <a href="{{ route('admin.event_categories') }}"
                 class="block px-4 py-2 rounded hover:bg-gray-700
