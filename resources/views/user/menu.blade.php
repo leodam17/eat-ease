@@ -3,7 +3,7 @@
 @section('title', 'EatEase | Menu')
 
 @section('content')
-<div class="relative w-full h-[400px] bg-cover bg-center" style="background-image: url('{{ asset('img/menu.webp') }}');">
+<div class="relative w-full h-[300px] bg-cover bg-center" style="background-image: url('{{ asset('img/menu.webp') }}');">
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center">
         <!-- Breadcrumb -->
