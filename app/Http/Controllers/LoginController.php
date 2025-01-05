@@ -22,7 +22,7 @@ class LoginController extends Controller
 
         // Periksa apakah admin atau user
         if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('success', 'Welcome back! You have successfully logged in.');
         }
 
         $user = Users::where('email', $request->email)->first();

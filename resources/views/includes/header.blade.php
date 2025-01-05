@@ -110,7 +110,7 @@
                 Menu
             </a>
             <a href="{{ route('user.order_history') }}" 
-               class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('menu') ? 'underline' : '' }}">
+               class="text-sm font-semibold leading-6 text-white hover:underline transition duration-300 {{ request()->is('orderHistory') ? 'underline' : '' }}">
                 Order History
             </a>
             <a href="{{ route('user.cart') }}" 

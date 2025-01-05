@@ -147,8 +147,22 @@
     background-color: #1e1a14;
 }
 </style>
-
-<div class="min-h-screen bg-[#e7e3d8] dark:bg-[#1e1a14] py-12 mt-10">
+<div class="relative w-full h-[300px] bg-cover bg-center" style="background-image: url('{{ asset('img/cart.png') }}');">
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col justify-center items-center">
+        <!-- Breadcrumb -->
+        <div class="text-white text-sm mb-4">
+            <a href="/home" class="hover:underline">Home</a>
+            <span class="mx-2">></span>
+            <a href="/menu" class="hover:underline">Menu</a>
+            <span class="mx-2">></span>
+            <span>Cart</span>
+        </div>
+        <!-- Title -->
+        <h1 class="text-4xl font-bold text-white">Your Cart</h1>
+    </div>
+</div>
+<div class="min-h-screen bg-[#e7e3d8] dark:bg-[#1e1a14] py-8">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
 
         @if(count($menuDetails) > 0)

@@ -74,4 +74,17 @@
             </a>
         </li>  
     </ul>
+    <ul class="space-y-2 mt-auto">
+        <li>
+            <form method="POST" action="{{ route('logout') }}" class="flex items-center px-4 py-2 rounded hover:bg-gray-700">
+                @csrf
+                <button type="submit" class="flex items-center w-full text-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M10.65 21q-.825 0-1.412-.588T8.65 19v-4q0-.425.288-.713T9.65 14t.713.288t.287.713v4h8v-14h-8v4q0 .425-.288.713T9.65 10t-.713-.288t-.287-.713V5q0-.825.588-1.413T10.65 3h8q.825 0 1.413.588T20.65 5v14q0 .825-.588 1.413T18.65 21h-8ZM12.3 16.3q-.275-.275-.275-.7t.275-.7L13.9 13H3.65q-.425 0-.713-.288T2.65 12t.288-.713T3.65 11H13.9l-1.6-1.6q-.275-.275-.275-.688t.275-.712q.3-.3.713-.3t.712.3l3.3 3.3q.15.15.212.325T17.25 12q0 .2-.063.375t-.212.325l-3.3 3.3q-.3.3-.7.3t-.7-.3Z"/>
+                    </svg>
+                    <div class="ml-3">Logout</div>
+                </button>
+            </form>
+        </li>
+    </ul>
 </aside>
