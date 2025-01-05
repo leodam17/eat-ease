@@ -31,16 +31,17 @@ class AdminController extends Controller
 
     public function lowDemandMenus()
     {
-        $menus = Menu::all(); // Ambil semua menu dari database
-        $leastOrderedMenu = $this->swarmOptimization($menus); // Panggil metode swarmOptimization untuk mendapatkan menu dengan pemesanan paling rendah
+        $menus = Menu::all();
+    
+        // Gunakan Simulated Annealing untuk menemukan menu dengan total pemesanan terendah
+        $leastOrderedMenu = $this->simulatedAnnealing($menus);
         $loggedInAdmin = Auth::user(); // Dapatkan data admin yang login
 
         // Jika user tidak ditemukan, beri respons error
         if (!$loggedInAdmin) {
             return response()->json(['error' => 'Admin not found'], 404);
         }
-
-        // Cek apakah $leastOrderedMenu adalah objek yang valid
+    
         if ($leastOrderedMenu === null) {
             return view('admin.adminleastmenu', ['error' => 'Tidak ada menu dengan pemesanan terendah.',]);
         }
@@ -48,73 +49,41 @@ class AdminController extends Controller
         return view('admin.adminleastmenu', compact('leastOrderedMenu'), [
             'admin' => $loggedInAdmin->nama,
             'email' => $loggedInAdmin->email,
-        ]); // Kirim $leastOrderedMenu ke view
+        ]);
     }
     
-    
 
-    private function swarmOptimization($menus, $iterations = 50)
+    private function simulatedAnnealing($menus, $initialTemperature = 100, $coolingRate = 0.95, $iterations = 100)
     {
-        $particles = [];
-        $globalBest = null;
-        $globalBestValue = PHP_INT_MAX;
+        $currentSolution = $menus->random(); // Ambil solusi awal secara acak
+        $currentBest = $currentSolution; // jadikan solusi terbaik
+        $currentBestValue = $currentSolution->total_pemesanan;
     
-        // Inisialisasi partikel
-        foreach ($menus as $menu) {
-            $particle = [
-                'menu' => $menu,
-                'velocity' => mt_rand() / mt_getrandmax() * 2 - 1, // Float antara -1 dan 1
-                'best_position' => $menu->total_pemesanan,
-                'best_value' => $menu->total_pemesanan,
-            ];
-            $particles[] = $particle;
+        $temperature = $initialTemperature; // inisialisasi temperature
     
-            // Cari global best awal
-            if ($menu->total_pemesanan < $globalBestValue) {
-                $globalBest = $menu;
-                $globalBestValue = $menu->total_pemesanan;
-            }
-        }
-    
-        // Jika tidak ada menu dengan pemesanan, kembalikan null
-        if ($globalBest === null) {
-            return null; // Atau bisa mengembalikan $menus[0] jika perlu fallback
-        }
-    
-        // Iterasi
         for ($i = 0; $i < $iterations; $i++) {
-            foreach ($particles as &$particle) {
-                // Hitung fitness
-                $fitness = $particle['menu']->total_pemesanan;
+            // Pilih tetangga baru secara acak
+            $newSolution = $menus->random();
+            $newValue = $newSolution->total_pemesanan;
     
-                // Update best position
-                if ($fitness < $particle['best_value']) {
-                    $particle['best_position'] = $fitness;
-                    $particle['best_value'] = $fitness;
+            // Jika solusi baru lebih baik, terima solusi baru
+            if ($newValue < $currentBestValue) {
+                $currentBest = $newSolution;
+                $currentBestValue = $newValue;
+            } else {
+                // Jika solusi baru lebih buruk, terima berdasarkan probabilitas
+                // Semakin tinggi temperatur, semakin besar peluang menerima menu yang lebih buruk
+                $acceptanceProbability = exp(($currentBestValue - $newValue) / $temperature);
+                if (rand() / getrandmax() < $acceptanceProbability) {
+                    $currentSolution = $newSolution;
                 }
-    
-                // Update global best
-                if ($fitness < $globalBestValue) {
-                    $globalBest = $particle['menu'];
-                    $globalBestValue = $fitness;
-                }
-    
-                // Update velocity dan posisi
-                $w = 0.5; // Bobot inersia
-                $c1 = 1.5; // Faktor kognitif
-                $c2 = 1.5; // Faktor sosial
-                $r1 = mt_rand() / mt_getrandmax();
-                $r2 = mt_rand() / mt_getrandmax();
-    
-                $particle['velocity'] = ($w * $particle['velocity']) +
-                    ($c1 * $r1 * ($particle['best_position'] - $fitness)) +
-                    ($c2 * $r2 * ($globalBestValue - $fitness));
-    
-                $currentPosition = $particle['menu']->total_pemesanan + $particle['velocity'];
             }
+    
+            // Turunkan temperatur, agar mengurangi kemungkinan menerima solusi yang lebih buruk
+            $temperature *= $coolingRate;
         }
     
-        return $globalBest; // Menu dengan pemesanan paling rendah
+        return $currentBest; // Kembalikan solusi terbaik ( menu dengan total pemesanan terendah )
     }
     
     public function popularMenus()
