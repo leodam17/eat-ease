@@ -13,6 +13,7 @@
     <table class="min-w-full bg-white border border-gray-300">
         <thead>
             <tr>
+                <th class="py-2 px-4 border-b">Order ID</th>
                 <th class="py-2 px-4 border-b">Name</th>
                 <th class="py-2 px-4 border-b">Category</th>
                 <th class="py-2 px-4 border-b">Price</th>
@@ -22,6 +23,7 @@
         <tbody>
             @foreach ($menus as $menu)
             <tr>
+                <td class="py-2 px-4 border-b">{{ $menu->id }}</td>
                 <td class="py-2 px-4 border-b">{{ $menu->nama }}</td>
                 <td class="py-2 px-4 border-b">{{ $menu->kategori }}</td>
                 <td class="py-2 px-4 border-b">{{ $menu->harga }}</td>

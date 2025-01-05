@@ -73,6 +73,16 @@
                 <div class="ml-3">Popular Menu</div> 
             </a>
         </li>  
+        <li>
+            <a href="{{ route('admin.orders') }}"
+                class="flex items-center px-4 py-2 rounded hover:bg-gray-700 
+                {{ request()->routeIs('admin.pendingOrders') ? 'bg-gray-700 text-white' : '' }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm1-11h-2v6h2zm0 8h-2v2h2z"/>
+                </svg>
+                <div class="ml-3">Pending Orders</div>
+            </a>
+        </li>        
     </ul>
     <ul class="space-y-2 mt-auto">
         <li>
