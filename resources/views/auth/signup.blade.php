@@ -3,14 +3,14 @@
 @section('title', 'Sign Up | EatEase')
 
 @section('content')
-<div class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('img/signup_admin.jpg') }}');">
+<div class="relative min-h-screen flex items-center justify-center bg-cover bg-center" style="background-image: url('{{ asset('img/signup.jpg') }}');">
     <div class="absolute inset-0 bg-black opacity-30"></div>
 
     <div class="relative p-8 w-full max-w-md text-center bg-white bg-opacity-80 rounded-lg shadow-2xl backdrop-blur-md border border-[#D6C1AC]">
         <h2 class="text-2xl font-bold mb-4 text-[#4A3628]">Create Your Account</h2>
 
         <!-- Sign-Up Form -->
-        <form action="{{ route('user.signup.store') }}" method="POST" class="space-y-4">
+        <form action="{{ route('auth.signup.store') }}" method="POST" class="space-y-4">
             @csrf
             <!-- Nama -->
             <div class="relative">

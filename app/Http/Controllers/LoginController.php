@@ -15,42 +15,37 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-
     public function login_auth(Request $request)
     {
         // Validasi input login
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string|min:6',
-        ]);
-    
-        // Login sebagai admin
-        if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
-            return redirect()->route('admin.dashboard');
+        $credentials = $request->only('email', 'password');
+
+        // Periksa apakah admin atau user
+        $admin = Admin::where('email', $request->email)->first();
+        if ($admin && \Hash::check($request->password, $admin->password)) {
+            Auth::login($admin);
+            return redirect()->route('admin.home')->with('success', 'Welcome, Admin! You have successfully logged in.');
         }
-    
-        // Login sebagai user
-        if (Auth::guard('web')->attempt($request->only('email', 'password'))) {
-            return redirect()->route('user.home');
+
+        $user = Users::where('email', $request->email)->first();
+        if ($user && \Hash::check($request->password, $user->password)) {
+            Auth::login($user);
+            return redirect()->route('user.home')->with('success', 'Welcome back! You have successfully logged in.');
         }
 
         return back()->with('error', 'Invalid credentials');
     }
 
-
     public function logout(Request $request)
     {
-        // Logout user
-        Auth::logout();
-
-        // Invalidate session
         $request->session()->invalidate();
-
-        // Regenerate CSRF token
         $request->session()->regenerateToken();
 
-        // Redirect ke halaman login atau logout
-        return redirect()->route('/login')->with('success', 'Logged out successfully!');
+        return redirect()->route('logout.page');
     }
 
+    public function logout_page()
+    {
+        return view('auth.logout');
+    }
 }
