@@ -29,6 +29,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/adminleastmenu', [AdminController::class, 'lowDemandMenus'])->name('admin.lowDemandMenus');
+    Route::get('/admin/popular-menus', [AdminController::class, 'popularMenus'])->name('admin.popularMenus');
 
 });
 
@@ -39,6 +40,8 @@ Route::middleware('auth:web')->group(function() {
     Route::get('/home', [HomeController::class, 'index'])->name('user.home');
     Route::get('/about', [HomeController::class, 'about'])->name('user.about');
     Route::get('/menu', [MenuController::class, 'menu'])->name('user.menu');
+    Route::get('/user/order-history', [CartController::class, 'orderHistory'])->name('user.orderHistory');
+
     
     // Route di dalam cart
     Route::get('/user/cart', [CartController::class, 'index'])->name('user.cart');
