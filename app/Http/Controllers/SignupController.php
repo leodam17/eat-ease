@@ -24,9 +24,9 @@ class SignupController extends Controller
         // Validate input
         $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email', // Ensure the email is unique in the users table
-            'password' => 'required|string|min:6|confirmed', // Ensure the password is confirmed
-            'preferensi' => 'nullable|string|in:normal,vege/vegan,spicy,dessert', // Validate preference
+            'email' => 'required|email|unique:users,email', // Pastikan email unik di tabel users
+            'password' => 'required|string|min:6|confirmed', // Pastikan password dikonfirmasi
+            'preferensi' => 'nullable|string|in:normal,vegan,spicy,dessert', // Validasi preferensi
             'alergi' => 'nullable|string|in:none,seafood,peanut,tofu,milk,hazelnut',
         ], [
             // Custom messages for validation

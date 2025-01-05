@@ -2064,6 +2064,18 @@
         },
         {
             "name": "league/commonmark",
+<<<<<<<<< Temporary merge branch 1
+            "version": "2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/commonmark.git",
+                "reference": "d990688c91cedfb69753ffc2512727ec646df2ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d990688c91cedfb69753ffc2512727ec646df2ad",
+                "reference": "d990688c91cedfb69753ffc2512727ec646df2ad",
+=========
             "version": "2.6.0",
             "source": {
                 "type": "git",
@@ -2074,6 +2086,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/d150f911e0079e90ae3c106734c93137c184f932",
                 "reference": "d150f911e0079e90ae3c106734c93137c184f932",
+>>>>>>>>> Temporary merge branch 2
                 "shasum": ""
             },
             "require": {
@@ -2171,7 +2184,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<<<< Temporary merge branch 1
+            "time": "2024-12-29T14:10:59+00:00"
+=========
             "time": "2024-12-07T15:34:16+00:00"
+>>>>>>>>> Temporary merge branch 2
         },
         {
             "name": "league/config",

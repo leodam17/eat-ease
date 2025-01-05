@@ -15,35 +15,35 @@ class AdminSeeder extends Seeder
     {
         DB::table('admin')->insert([
             [
-                'nama' => 'aikolee',
+                'nama' => 'Aiko Lee',
                 'password' => Hash::make('aikolee'),
                 'email' => 'aikolee@admin.com',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nama' => 'aikosachi',
+                'nama' => 'Aiko Sachi',
                 'password' => Hash::make('aikosachi'),
                 'email' => 'aikosachi@admin.com',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nama' => 'nadya',
+                'nama' => 'Nadya',
                 'password' => Hash::make('nadya'),
                 'email' => 'nadya@admin.com',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nama' => 'joyce',
+                'nama' => 'Joyce',
                 'password' => Hash::make('joyce'),
                 'email' => 'joyce@admin.com',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nama' => 'adam',
+                'nama' => 'Adam',
                 'password' => Hash::make('adam'),
                 'email' => 'adam@admin.com',
                 'created_at' => now(),

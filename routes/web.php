@@ -12,10 +12,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/adminleastmenu', [AdminController::class, 'lowDemandMenus'])->name('admin.lowDemandMenus');
-
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
 // Route Signup
 Route::get('/signup', [SignupController::class, 'index'])->name('auth.signup');
 Route::post('/signup', [SignupController::class, 'signup'])->name('auth.signup.store');
@@ -29,10 +25,12 @@ Route::get('/logout', [LoginController::class, 'logout_page'])->name('logout.pag
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //Route untuk admin
-Route::middleware('auth:admin')->group(function() {
-    Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
-    Route::get('/about', [HomeController::class, 'adminAbout'])->name('admin.about');
-    });
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/adminleastmenu', [AdminController::class, 'lowDemandMenus'])->name('admin.lowDemandMenus');
+
+});
+
 
 //Route untuk user
 Route::middleware('auth:web')->group(function() {
