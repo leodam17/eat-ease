@@ -150,7 +150,7 @@ public function update(Request $request, $id)
 public function create()
 {
     $menus = Menu::all(); 
-    return view('admin.menu_create', ['menus' => $menus]); 
+    return view('admin.menu_create', ['menu' => $menus]); 
 }
 
 
@@ -158,7 +158,7 @@ public function create()
 public function store(Request $request)
 {
     // dd($request->all());
-    $validated = $request->validate([
+    $request->validate([
         'nama' => 'required|string|max:100',
         'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         'waktu_pengerjaan' => 'required|integer',
@@ -167,9 +167,34 @@ public function store(Request $request)
         'kategori' => 'required|string|max:100',
         'popularitas' => 'required|integer',
         'kalori' => 'required|integer',
+    ], [
+        'nama.required' => 'Nama menu wajib diisi.',
+        'nama.string' => 'Nama menu harus berupa teks.',
+        'nama.max' => 'Nama menu maksimal 100 karakter.',
+        
+        'gambar.image' => 'File yang diunggah harus berupa gambar.',
+        'gambar.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
+        'gambar.max' => 'Ukuran gambar maksimal 2MB.',
+        
+        'waktu_pengerjaan.required' => 'Waktu pengerjaan wajib diisi.',
+        'waktu_pengerjaan.integer' => 'Waktu pengerjaan harus berupa angka.',
+        
+        'deskripsi.required' => 'Deskripsi menu wajib diisi.',
+        'deskripsi.string' => 'Deskripsi menu harus berupa teks.',
+        
+        'harga.required' => 'Harga menu wajib diisi.',
+        'harga.integer' => 'Harga menu harus berupa angka.',
+        
+        'kategori.required' => 'Kategori menu wajib dipilih.',
+        'kategori.string' => 'Kategori menu harus berupa teks.',
+        'kategori.max' => 'Kategori menu maksimal 100 karakter.',
+        
+        'popularitas.required' => 'Popularitas menu wajib diisi.',
+        'popularitas.integer' => 'Popularitas menu harus berupa angka.',
+        
+        'kalori.required' => 'Kalori menu wajib diisi.',
+        'kalori.integer' => 'Kalori menu harus berupa angka.',
     ]);
-
-    $imagePath = null;
 
     if ($request->hasFile('gambar')) {
         $originalFileName = $request->gambar->getClientOriginalName();
