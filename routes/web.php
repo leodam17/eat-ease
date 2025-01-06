@@ -32,12 +32,12 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/admin/popular-menus', [AdminController::class, 'popularMenus'])->name('admin.popularMenus');
     Route::get('/menus', [MenuController::class, 'index'])->name('admin.menus'); // Route for menu list
     Route::delete('/menus/{menu}', [MenuController::class, 'destroy'])->name('admin.menu.destroy'); // Delete route
-    Route::get('/admin/menu/edit/{id}', [MenuController::class, 'edit'])->name('admin.menu.edit');//edit route
-    Route::put('/admin/menu/update/{id}', [MenuController::class, 'update'])->name('admin.menu.update');//update route
-    Route::get('/admin/menu/create', [MenuController::class, 'create'])->name('admin.menu.create');//create route
-    Route::post('/admin/menu/store', [MenuController::class, 'store'])->name('admin.menu.store');//submit for new menu route
-    Route::get('/admin/orders', [OrderController::class, 'index'])->name('admin.orders');//buat liat listnya
-    Route::get('/admin/orders/pending', [OrderController::class, 'index'])->name('orders.pending');//untuk pending
+    Route::get('/menu/edit/{id}', [MenuController::class, 'edit'])->name('admin.menu.edit');//edit route
+    Route::put('/menu/update/{id}', [MenuController::class, 'update'])->name('admin.menu.update');//update route
+    Route::get('/menu/create', [MenuController::class, 'create'])->name('admin.menu.create');//create route
+    Route::post('/menu/store', [MenuController::class, 'store'])->name('admin.menu.store');//submit for new menu route
+    Route::get('/orders', [OrderController::class, 'index'])->name('admin.orders');//buat liat listnya
+    Route::get('/orders/pending', [OrderController::class, 'index'])->name('orders.pending');//untuk pending
     Route::post('/orders/{id}/done', [OrderController::class, 'markAsDone'])->name('orders.markAsDone');//untuk status jadi done
 });
 
