@@ -5,8 +5,8 @@
     <div class="flex items-center space-x-3 p-4 mb-8 border-b border-gray-700">
     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" class="mr-1"><path fill="currentColor" d="M12 12q-1.65 0-2.825-1.175T8 8t1.175-2.825T12 4t2.825 1.175T16 8t-1.175 2.825T12 12m4 8v-6.4q.625.2 1.225.425t1.175.525q.75.375 1.175 1.088T20 17.2V20zm-6-3.5v-3.35q.5-.075 1-.112T12 13t1 .038t1 .112v3.35zM4 20v-2.8q0-.85.425-1.562T5.6 14.55q.575-.3 1.175-.525T8 13.6V20z"/></svg>
         <div>
-            {{-- <h3 class="text-lg font-semibold text-gray-100">{{ $admin }}</h3>
-            <p class="text-sm text-gray-400">{{ $email }}</p> --}}
+            <h3 class="text-lg font-semibold text-gray-100">{{ $admin }}</h3>
+            <p class="text-sm text-gray-400">{{ $email }}</p>
         </div>
     </div>
     
