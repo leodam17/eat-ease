@@ -164,7 +164,7 @@ public function store(Request $request)
         'waktu_pengerjaan' => 'required|integer',
         'deskripsi' => 'required|string',
         'harga' => 'required|integer',
-        'kategori' => 'required|string|max:100',
+        'kategori' => 'nullable|string|in:normal,vegan,spicy,dessert',
         'popularitas' => 'required|integer',
         'kalori' => 'required|integer',
     ], [
