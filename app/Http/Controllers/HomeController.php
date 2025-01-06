@@ -38,7 +38,7 @@ class HomeController extends Controller
             'chicken' => ['chicken'],
             'hazelnut' => ['hazelnut', 'nut'],
             'milk' => ['milk', 'cheese', 'cream', 'milkshake'],
-            'tofu' => ['tofu'], // Add tofu allergy category
+            'tofu' => ['tofu'],
         ];
     
         // Mengambil preferensi dan alergi user
