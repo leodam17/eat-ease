@@ -17,10 +17,9 @@ class LoginController extends Controller
 
     public function login_auth(Request $request)
     {
-        // Validasi input login
         $credentials = $request->only('email', 'password');
 
-        // Periksa apakah admin atau user
+        // Login as admin/user
         if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
             return redirect()->route('admin.dashboard')->with('success', 'Welcome back! You have successfully logged in.');
         }
