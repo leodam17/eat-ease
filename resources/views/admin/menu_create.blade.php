@@ -13,6 +13,7 @@
         </div>
 
         <div class="mb-4">
+            <label for="kategori" class="block text-sm font-medium text-gray-700">Category</label>
             <select name="preferensi" id="preferensi" 
                 class="w-full bg-white border border-white text-black rounded-lg py-3 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-black shadow-sm">
                 <option value="" disabled selected class="text-black">Select Category</option>
