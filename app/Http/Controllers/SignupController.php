@@ -21,7 +21,7 @@ class SignupController extends Controller
      */
     public function signup(Request $request)
     {
-        // Validate input
+        // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email', // Pastikan email unik di tabel users
@@ -29,7 +29,6 @@ class SignupController extends Controller
             'preferensi' => 'nullable|string|in:normal,vegan,spicy,dessert', // Validasi preferensi
             'alergi' => 'nullable|string|in:none,seafood,peanut,tofu,milk,hazelnut',
         ], [
-            // Custom messages for validation
             'nama.required' => 'Full name is required.',
             'nama.string' => 'Full name must be a string.',
             'nama.max' => 'Full name must not exceed 255 characters.',
@@ -44,16 +43,15 @@ class SignupController extends Controller
             'password.confirmed' => 'Password confirmation does not match.',
         ]);
 
-        // Create a new user
+        // Membuat user baru
         Users::create([
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => Hash::make($request->password), // Encrypt password
-            'preferensi' => $request->preferensi, // Save preference
+            'preferensi' => $request->preferensi, // Save preferensi
             'alergi' => $request->alergi,
         ]);
 
-        // Redirect to the login page with a success message
         return redirect()->route('login')->with('success', 'Yay! Your account has been created.');
     }
 }

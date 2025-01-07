@@ -19,7 +19,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        // Login as admin/user
+        // Login sebagai admin atau user
         if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {
             return redirect()->route('admin.dashboard')->with('success', 'Welcome back! You have successfully logged in.');
         }

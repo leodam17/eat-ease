@@ -41,14 +41,14 @@ class MenuController extends Controller
         return view('user.menu', compact('menus'));
     }
 
-    // List menu for admin
+    // List menu
     public function index()
     {
         $menus = Menu::paginate(6);
         return view('admin.list', compact('menus')); 
     }
 
-    // Delete menu for admin
+    // Delete menu
     public function destroy($id)
     {
         $menu = Menu::findOrFail($id); 
@@ -63,14 +63,14 @@ class MenuController extends Controller
         return redirect()->route('admin.menus');
     }
 
-    // Edit menu for admin
+    // Edit menu
     public function edit($id)
     {
         $menu = Menu::findOrFail($id); 
         return view('admin.menu_form', compact('menu')); 
     }
 
-    // Update menu for admin
+    // Update menu
     public function update(Request $request, $id)
     {
         $menu = Menu::findOrFail($id); 
@@ -144,7 +144,7 @@ class MenuController extends Controller
         return redirect()->route('admin.menus');
     }
 
-    // Show the form to add a new menu
+    // Form untuk menambah menu
     public function create()
     {
         $menus = Menu::all(); 
@@ -152,7 +152,7 @@ class MenuController extends Controller
     }
 
 
-    // Submit a new menu
+    // Submit menu baru
     public function store(Request $request){
         $validatedData = $request -> validate([
             'nama' => 'required|string|max:100',
