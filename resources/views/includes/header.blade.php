@@ -132,17 +132,27 @@
     <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 right-0 bg-white shadow-lg">
         <div class="flex flex-col items-start">
             <a href="{{ auth()->check() && auth()->user() instanceof \App\Models\Admin ? route('admin.home') : route('user.home') }}" 
-            class="block w-full px-4 py-2 text-sm font-semibold leading-6">
+            class="block w-full px-4 py-2 text-sm font-semibold leading-6 {{ request()->is('home') ? 'underline' : '' }}">
                 Home
             </a>
             <a href="{{ auth()->check() && auth()->user() instanceof \App\Models\Admin ? route('admin.about') : route('user.about') }}" 
-            class="block w-full px-4 py-2 text-sm font-semibold leading-6">
+            class="block w-full px-4 py-2 text-sm font-semibold leading-6 {{ request()->is('about') ? 'underline' : '' }}">
                 About
             </a>
             @if(auth()->check() && auth()->user() instanceof \App\Models\Users)
             <a href="{{ route('user.menu') }}" 
-            class="block w-full px-4 py-2 text-sm font-semibold leading-6">
+            class="block w-full px-4 py-2 text-sm font-semibold leading-6 {{ request()->is('menu') ? 'underline' : '' }}">
                 Menu
+            </a>
+            <a href="{{ route('user.order_history') }}" 
+            class="block w-full px-4 py-2 text-sm font-semibold leading-6 {{ request()->is('order-history') ? 'underline' : '' }}">
+                Order History
+            </a>
+            <a href="{{ route('user.cart') }}" 
+            class="block w-full px-4 py-2 text-sm font-semibold leading-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                    <path d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 0 0-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 0 0 0-1.5H5.378A2.25 2.25 0 0 1 7.5 15h11.218a.75.75 0 0 0 .674-.421 60.358 60.358 0 0 0 2.96-7.228.75.75 0 0 0-.525-.965A60.864 60.864 0 0 0 5.68 4.509l-.232-.867A1.875 1.875 0 0 0 3.636 2.25H2.25ZM3.75 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" />
+                </svg>
             </a>
             @endif
         </div>
@@ -153,16 +163,16 @@
 
         @auth
         <div class="flex items-center px-4 py-2">
-            <form action="{{ route('logout') }}" method="POST" class="w-full">
-                @csrf
-                <button 
-                    type="submit" 
-                    id="logout-button"
-                    class="w-full text-sm font-semibold leading-6 text-black dark:text-white border border-black dark:border-white rounded px-3 py-1 
-                    hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300">
-                    Logout
-                </button>
-            </form>
+        <form action="{{ route('logout') }}" method="POST" class="w-full">
+            @csrf
+            <button 
+                type="submit" 
+                id="logout-button"
+                class="w-full text-sm font-semibold leading-6 text-black border-2 border-black rounded px-3 py-1 
+                hover:bg-gray-200 transition duration-300">
+                Logout
+            </button>
+        </form>
         </div>
         @endauth
     </div>

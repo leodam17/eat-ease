@@ -38,140 +38,138 @@ class MenuController extends Controller
 
         $menus = $query->get();
 
-    return view('user.menu', compact('menus'));
-}
-
-// List menu for admin
-public function index()
-{
-    $menus = Menu::all();
-    return view('admin.list', compact('menus')); 
-}
-
-// Delete menu for admin
-public function destroy($id)
-{
-    $menu = Menu::findOrFail($id); 
-    if ($menu->gambar) {
-        Storage::delete('public/' . $menu->gambar);
+        return view('user.menu', compact('menus'));
     }
 
-    $menu->delete();
+    // List menu for admin
+    public function index()
+    {
+        $menus = Menu::paginate(6);
+        return view('admin.list', compact('menus')); 
+    }
 
-    Session::flash('title', 'Menu deleted successfully!');
-    Session::flash('icon', 'success');
-    return redirect()->route('admin.menus');
-}
-
-// Edit menu for admin
-public function edit($id)
-{
-    $menu = Menu::findOrFail($id); 
-    return view('admin.menu_form', compact('menu')); 
-}
-
-// Update menu for admin
-public function update(Request $request, $id)
-{
-    $menu = Menu::findOrFail($id); 
-
-    $request->validate([
-        'nama' => 'required|string|max:100',
-        'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        'waktu_pengerjaan' => 'required|integer',
-        'deskripsi' => 'required|string',
-        'harga' => 'required|integer',
-        'kategori' => 'required|string|max:100',
-        'popularitas' => 'required|integer',
-        'kalori' => 'required|integer',
-    ], [
-        'nama.required' => 'Nama menu wajib diisi.',
-        'nama.string' => 'Nama menu harus berupa teks.',
-        'nama.max' => 'Nama menu maksimal 100 karakter.',
-        
-        'gambar.image' => 'File yang diunggah harus berupa gambar.',
-        'gambar.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
-        'gambar.max' => 'Ukuran gambar maksimal 2MB.',
-        
-        'waktu_pengerjaan.required' => 'Waktu pengerjaan wajib diisi.',
-        'waktu_pengerjaan.integer' => 'Waktu pengerjaan harus berupa angka.',
-        
-        'deskripsi.required' => 'Deskripsi menu wajib diisi.',
-        'deskripsi.string' => 'Deskripsi menu harus berupa teks.',
-        
-        'harga.required' => 'Harga menu wajib diisi.',
-        'harga.integer' => 'Harga menu harus berupa angka.',
-        
-        'kategori.required' => 'Kategori menu wajib dipilih.',
-        'kategori.string' => 'Kategori menu harus berupa teks.',
-        'kategori.max' => 'Kategori menu maksimal 100 karakter.',
-        
-        'popularitas.required' => 'Popularitas menu wajib diisi.',
-        'popularitas.integer' => 'Popularitas menu harus berupa angka.',
-        
-        'kalori.required' => 'Kalori menu wajib diisi.',
-        'kalori.integer' => 'Kalori menu harus berupa angka.',
-    ]);
-
-    $imagePath = $menu->gambar;
-
-    if ($request->hasFile('gambar')) {
-        if ($menu->gambar && file_exists(public_path('storage/' . $menu->gambar))) {
-            unlink(public_path('storage/' . $menu->gambar));
+    // Delete menu for admin
+    public function destroy($id)
+    {
+        $menu = Menu::findOrFail($id); 
+        if ($menu->gambar) {
+            Storage::delete('public/' . $menu->gambar);
         }
 
-        $originalFileName = $request->gambar->getClientOriginalName();
-        $safeFileName = preg_replace('/[^a-zA-Z0-9_-]/', '_', $originalFileName);
+        $menu->delete();
 
-        $imagePath = 'menu_images/' . $safeFileName;
-
-        $request->gambar->move(public_path('storage/menu_images'), $imagePath);
+        session()->flash('success', 'Menu deleted successfully!');
+        
+        return redirect()->route('admin.menus');
     }
 
-    $menu->update([
-        'nama' => $request->nama,
-        'gambar' => $imagePath,
-        'waktu_pengerjaan' => $request->waktu_pengerjaan,
-        'deskripsi' => $request->deskripsi,
-        'harga' => $request->harga,
-        'kategori' => $request->kategori,
-        'popularitas' => $request->popularitas,
-        'kalori' => $request->kalori,
-    ]);
+    // Edit menu for admin
+    public function edit($id)
+    {
+        $menu = Menu::findOrFail($id); 
+        return view('admin.menu_form', compact('menu')); 
+    }
 
-    Session::flash('title', 'Menu updated successfully!');
-    Session::flash('message', 'Perubahan menu telah disimpan.');
-    Session::flash('icon', 'success');
+    // Update menu for admin
+    public function update(Request $request, $id)
+    {
+        $menu = Menu::findOrFail($id); 
 
-    return redirect()->route('admin.menus');
-}
+        $request->validate([
+            'nama' => 'required|string|max:100',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'waktu_pengerjaan' => 'required|integer',
+            'deskripsi' => 'required|string',
+            'harga' => 'required|integer',
+            'kategori' => 'required|string|max:100',
+            'popularitas' => 'required|integer',
+            'kalori' => 'required|integer',
+        ], [
+            'nama.required' => 'Nama menu wajib diisi.',
+            'nama.string' => 'Nama menu harus berupa teks.',
+            'nama.max' => 'Nama menu maksimal 100 karakter.',
+            
+            'gambar.image' => 'File yang diunggah harus berupa gambar.',
+            'gambar.mimes' => 'Gambar harus berformat jpeg, png, jpg, atau gif.',
+            'gambar.max' => 'Ukuran gambar maksimal 2MB.',
+            
+            'waktu_pengerjaan.required' => 'Waktu pengerjaan wajib diisi.',
+            'waktu_pengerjaan.integer' => 'Waktu pengerjaan harus berupa angka.',
+            
+            'deskripsi.required' => 'Deskripsi menu wajib diisi.',
+            'deskripsi.string' => 'Deskripsi menu harus berupa teks.',
+            
+            'harga.required' => 'Harga menu wajib diisi.',
+            'harga.integer' => 'Harga menu harus berupa angka.',
+            
+            'kategori.required' => 'Kategori menu wajib dipilih.',
+            'kategori.string' => 'Kategori menu harus berupa teks.',
+            'kategori.max' => 'Kategori menu maksimal 100 karakter.',
+            
+            'popularitas.required' => 'Popularitas menu wajib diisi.',
+            'popularitas.integer' => 'Popularitas menu harus berupa angka.',
+            
+            'kalori.required' => 'Kalori menu wajib diisi.',
+            'kalori.integer' => 'Kalori menu harus berupa angka.',
+        ]);
 
-// Show the form to add a new menu
-public function create()
-{
-    $menus = Menu::all(); 
-    return view('admin.menu_create', ['menu' => $menus]); 
-}
+        $imagePath = $menu->gambar;
+
+        if ($request->hasFile('gambar')) {
+            if ($menu->gambar && file_exists(public_path('storage/' . $menu->gambar))) {
+                unlink(public_path('storage/' . $menu->gambar));
+            }
+
+            $originalFileName = $request->gambar->getClientOriginalName();
+            $safeFileName = preg_replace('/[^a-zA-Z0-9_-]/', '_', $originalFileName);
+
+            $imagePath = 'menu_images/' . $safeFileName;
+
+            $request->gambar->move(public_path('storage/menu_images'), $imagePath);
+        }
+
+        $menu->update([
+            'nama' => $request->nama,
+            'gambar' => $imagePath,
+            'waktu_pengerjaan' => $request->waktu_pengerjaan,
+            'deskripsi' => $request->deskripsi,
+            'harga' => $request->harga,
+            'kategori' => $request->kategori,
+            'popularitas' => $request->popularitas,
+            'kalori' => $request->kalori,
+        ]);
+
+        session()->flash('success', 'Menu updated successfully!');
+
+        return redirect()->route('admin.menus');
+    }
+
+    // Show the form to add a new menu
+    public function create()
+    {
+        $menus = Menu::all(); 
+        return view('admin.menu_create', ['menu' => $menus]); 
+    }
 
 
-// Submit a new menu
-public function store(Request $request){
-    $validatedData = $request -> validate([
-        'nama' => 'required|string|max:100',
-        'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-        'waktu_pengerjaan' => 'required|integer',
-        'deskripsi' => 'required|string',
-        'harga' => 'required|integer',
-        'kategori' => 'nullable|string|in:normal,vegan,spicy,dessert',
-        'popularitas' => 'required|integer',
-        'kalori' => 'required|integer',
-        'total_pemesanan'=>'required',
-    ]);
+    // Submit a new menu
+    public function store(Request $request){
+        $validatedData = $request -> validate([
+            'nama' => 'required|string|max:100',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'waktu_pengerjaan' => 'required|integer',
+            'deskripsi' => 'required|string',
+            'harga' => 'required|integer',
+            'kategori' => 'nullable|string|in:normal,vegan,spicy,dessert',
+            'popularitas' => 'required|integer',
+            'kalori' => 'required|integer',
+            'total_pemesanan'=>'required',
+        ]);
 
-    $validatedData['gambar'] = $request ->file('gambar')
-    ->store ('gambar');
-    Menu::create($validatedData);
-    return redirect('admin/menus');
-}
-
+        $validatedData['gambar'] = $request ->file('gambar')
+        ->store ('gambar');
+        Menu::create($validatedData);
+        session()->flash('success', 'Menu created successfully!');
+        return redirect('admin/menus');
+    }
 }

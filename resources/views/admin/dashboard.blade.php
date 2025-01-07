@@ -35,15 +35,6 @@
         border-color: #007bff;
     }
 
-    .dashboard-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .dashboard-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
     table {
         width: 100%;
         border-collapse: collapse;
@@ -51,8 +42,11 @@
     }
 
     table thead {
-        background-color: #f9fafb;
+        background-color: #00bcd4;
+        color: white;
         text-align: left;
+        text-transform: uppercase;
+        font-size: 0.875rem;
     }
 
     table th, table td {
@@ -66,6 +60,15 @@
 
     table tbody tr:hover {
         background-color: #f1f5f9;
+    }
+
+    .dashboard-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 </style>
 
@@ -98,30 +101,31 @@
         </div>
     </div>
 
-
     @if($orders->isEmpty())
         <p class="text-center text-gray-500 mt-5">Tidak ada data order tersedia.</p>
     @else
-        <table>
-            <thead>
-                <tr>
-                    <th>Cust ID</th>
-                    <th>Nama Pesanan</th>
-                    <th>Status Pesanan</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($orders as $order)
+        <div class="overflow-x-auto shadow-lg rounded-lg">
+            <table>
+                <thead class="bg-cyan-600 text-white uppercase text-sm">
                     <tr>
-                        <td>{{ $order->user_id }}</td>
-                        <td>{{ $order->nama_pesanan }}</td>
-                        <td>{{ $order->status_pesanan }}</td>
+                        <th class="py-4 px-6 text-left border-b">Cust ID</th>
+                        <th class="py-4 px-6 text-left border-b">Nama Pesanan</th>
+                        <th class="py-4 px-6 text-left border-b">Status Pesanan</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="text-gray-700">
+                    @foreach($orders as $order)
+                        <tr class="hover:bg-gray-100">
+                            <td class="py-4 px-6 border-b">{{ $order->user_id }}</td>
+                            <td class="py-4 px-6 border-b">{{ $order->nama_pesanan }}</td>
+                            <td class="py-4 px-6 border-b">{{ $order->status_pesanan }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
 
-        <div class="pagination mt-5">
+        <div class="pagination mt-6">
             {{ $orders->links() }}
         </div>
     @endif

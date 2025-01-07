@@ -20,7 +20,7 @@ class AdminController extends Controller
             return response()->json(['error' => 'Admin not found'], 404);
         }
 
-        $orders = Order::paginate(8); 
+        $orders = Order::paginate(7); 
 
         return view('admin.dashboard', compact('orders', 'totalOrder', 'totalMenu'), [
             'admin' => $loggedInAdmin->nama,

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mx-auto mt-10">
-    <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Most Popular Menus</h1>
+    <h1 class="text-5xl font-extrabold text-center text-gray-800 dark:text-black mt-3 mb-6">MOST POPULAR MENUS</h1>
 
     <div class="overflow-x-auto shadow-lg rounded-lg">
         <table class="min-w-full bg-white border border-gray-200 rounded-lg">
@@ -29,7 +29,7 @@
         </table>
     </div>
 
-    <!-- Pagination Links -->
+    <!-- Pagination -->
     <div class="mt-6">
         {{ $popularMenus->links('pagination::tailwind') }}
     </div>

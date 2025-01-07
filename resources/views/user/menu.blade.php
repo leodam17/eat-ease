@@ -66,7 +66,7 @@
 
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            @foreach($menus as $menu)
+            @forelse($menus as $menu)
             <div class="bg-[#ECE8D8] dark:bg-[#2b241c] text-[#4a3b2f] dark:text-[#e7d7c4] rounded-lg overflow-hidden shadow-lg">
                 <!-- Modal -->
                 <img src="{{ asset('img/' . $menu->gambar) }}" alt="{{ $menu->nama }}" class="w-full h-48 object-cover cursor-pointer" onclick="openModal('{{ asset('img/' . $menu->gambar) }}')">
@@ -127,8 +127,14 @@
                     </div>
                 </div>
             </div>
-            @endforeach
-        </div>
+            @empty
+                <div class="col-span-full text-center text-base text-[#4a3b2f] dark:text-[#e7d7c4]">
+                    <em>
+                    Oops! We couldn't find anything that matches your search 😅
+                    </em>
+                </div>
+            @endforelse
+    </div>
     </div>
 </div>
 

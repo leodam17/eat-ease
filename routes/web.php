@@ -9,9 +9,6 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\SignupController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Route Signup
 Route::get('/signup', [SignupController::class, 'index'])->name('auth.signup');
@@ -48,9 +45,8 @@ Route::middleware('auth:web')->group(function() {
     Route::get('/home', [HomeController::class, 'index'])->name('user.home');
     Route::get('/about', [HomeController::class, 'about'])->name('user.about');
     Route::get('/menu', [MenuController::class, 'menu'])->name('user.menu');
-    Route::get('/user/order-history', [CartController::class, 'orderHistory'])->name('user.orderHistory');
+    Route::get('/order-history', [OrderController::class, 'orderHistory'])->name('user.order_history');
 
-    
     // Route di dalam cart
     Route::get('/user/cart', [CartController::class, 'index'])->name('user.cart');
     Route::post('/user/cart/add', [CartController::class, 'add'])->name('user.cart.add');
@@ -58,5 +54,3 @@ Route::middleware('auth:web')->group(function() {
     Route::post('/user/cart/update/{menuId}', [CartController::class, 'updateQuantity'])->name('user.cart.update');
     Route::post('/cart/order', [CartController::class, 'storeOrder'])->name('cart.storeOrder');
     });
-
-    Route::get('/order-history', [OrderController::class, 'orderHistory'])->name('user.order_history');

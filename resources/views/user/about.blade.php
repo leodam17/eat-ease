@@ -46,15 +46,31 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 md:px-16">
         <div class="bg-[#f7f4ef] dark:bg-[#2c2720] p-6 rounded-lg shadow-md">
-            <h3 class="text-lg font-semibold mb-2 text-[#4a3b2f] dark:text-[#e7d7c4]">Personalized Recommendations</h3>
+            <div class="flex items-center mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-[#4a3b2f] dark:text-[#e7d7c4] mr-2">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-2.625 6c-.54 0-.828.419-.936.634a1.96 1.96 0 0 0-.189.866c0 .298.059.605.189.866.108.215.395.634.936.634.54 0 .828-.419.936-.634.13-.26.189-.568.189-.866 0-.298-.059-.605-.189-.866-.108-.215-.395-.634-.936-.634Zm4.314.634c.108-.215.395-.634.936-.634.54 0 .828.419.936.634.13.26.189.568.189.866 0 .298-.059.605-.189.866-.108.215-.395.634-.936.634-.54 0-.828-.419-.936-.634a1.96 1.96 0 0 1-.189-.866c0-.298.059-.605.189-.866Zm2.023 6.828a.75.75 0 1 0-1.06-1.06 3.75 3.75 0 0 1-5.304 0 .75.75 0 0 0-1.06 1.06 5.25 5.25 0 0 0 7.424 0Z" clip-rule="evenodd" />
+                </svg>
+                <h3 class="text-lg font-semibold text-[#4a3b2f] dark:text-[#e7d7c4]">Personalized Recommendations</h3>
+            </div>
             <p class="text-sm text-[#4a3b2f] dark:text-[#d7d4cc]">Our AI learns your tastes and suggests meals tailored to you.</p>
         </div>
         <div class="bg-[#f7f4ef] dark:bg-[#2c2720] p-6 rounded-lg shadow-md">
-            <h3 class="text-lg font-semibold mb-2 text-[#4a3b2f] dark:text-[#e7d7c4]">Time-Saving</h3>
+            <div class="flex items-center mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-[#4a3b2f] dark:text-[#e7d7c4] mr-2">
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z" clip-rule="evenodd" />
+                </svg>
+                <h3 class="text-lg font-semibold text-[#4a3b2f] dark:text-[#e7d7c4]">Time-Saving</h3>
+            </div>
             <p class="text-sm text-[#4a3b2f] dark:text-[#d7d4cc]">No more endless scrolling — find your ideal meal in seconds.</p>
         </div>
         <div class="bg-[#f7f4ef] dark:bg-[#2c2720] p-6 rounded-lg shadow-md">
-            <h3 class="text-lg font-semibold mb-2 text-[#4a3b2f] dark:text-[#e7d7c4]">Wide Variety</h3>
+            <div class="flex items-center mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-[#4a3b2f] dark:text-[#e7d7c4] mr-2">
+                    <path d="M15.75 8.25a.75.75 0 0 1 .75.75c0 1.12-.492 2.126-1.27 2.812a.75.75 0 1 1-.992-1.124A2.243 2.243 0 0 0 15 9a.75.75 0 0 1 .75-.75Z" />
+                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM4.575 15.6a8.25 8.25 0 0 0 9.348 4.425 1.966 1.966 0 0 0-1.84-1.275.983.983 0 0 1-.97-.822l-.073-.437c-.094-.565.25-1.11.8-1.267l.99-.282c.427-.123.783-.418.982-.816l.036-.073a1.453 1.453 0 0 1 2.328-.377L16.5 15h.628a2.25 2.25 0 0 1 1.983 1.186 8.25 8.25 0 0 0-6.345-12.4c.044.262.18.503.389.676l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.575 15.6Z" clip-rule="evenodd" />
+                </svg>
+                <h3 class="text-lg font-semibold text-[#4a3b2f] dark:text-[#e7d7c4]">Wide Variety</h3>
+            </div>
             <p class="text-sm text-[#4a3b2f] dark:text-[#d7d4cc]">From local favorites to international cuisines, explore it all.</p>
         </div>
     </div>
@@ -94,13 +110,13 @@
             </div>
             <div class="bg-[#f7f4ef] dark:bg-[#2c2720] p-4 rounded-lg shadow-md">
                 <button class="w-full text-left text-[#4a3b2f] dark:text-[#e7d7c4] font-semibold flex items-center justify-between" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180');">
-                    Is EatEase free to use?
+                    Can I track my order history?
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 transition-transform duration-200">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
                 </button>
                 <div class="hidden mt-2 text-sm text-[#4a3b2f] dark:text-[#d7d4cc]">
-                    Yes, EatEase is completely free to use for discovering personalized meal recommendations.
+                    Yes, you can view your past orders, making it easier to reorder your favorite meals.
                 </div>
             </div>
         </div>
