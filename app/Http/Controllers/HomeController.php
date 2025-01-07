@@ -17,7 +17,7 @@ class HomeController extends Controller
 
         $loggedInUser = Auth::user();
     
-        // Digunakan untuk swipper
+        // Digunakan untuk carousel
         $menus = Menu::orderBy('popularitas', 'desc')->get();
     
         $menu_data = Menu::all();
